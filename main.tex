@@ -56,7 +56,7 @@
 
 % Pengaturan format judul bab
 \usepackage{titlesec}
-\titleformat{\chapter}[display]{\bfseries\Large}{BAB \centering\Roman{chapter}}{0ex}{\vspace{0ex}\centering}
+\titleformat{\chapter}[display]{\bfseries\Large}{BAB \centering\arabic{chapter}}{0ex}{\vspace{0ex}\centering}
 \titleformat{\section}{\bfseries\large}{\MakeUppercase{\thesection}}{1ex}{\vspace{1ex}}
 \titleformat{\subsection}{\bfseries\large}{\MakeUppercase{\thesubsection}}{1ex}{}
 \titleformat{\subsubsection}{\bfseries\large}{\MakeUppercase{\thesubsubsection}}{1ex}{}
@@ -90,103 +90,103 @@
 % Isi keseluruhan dokumen
 \begin{document}
 
-  % Sampul luar Bahasa Indonesia
-  \newcommand\covercontents{sampul/konten-id.tex}
-  \input{sampul/sampul-luar.tex}
+% Sampul luar Bahasa Indonesia
+\newcommand\covercontents{sampul/konten-id.tex}
+\input{sampul/sampul-luar.tex}
 
-  % Atur ulang penomoran halaman
-  \setcounter{page}{1}
+% Atur ulang penomoran halaman
+\setcounter{page}{1}
 
-  % Sampul dalam Bahasa Indonesia
-  \renewcommand\covercontents{sampul/konten-id.tex}
-  \input{sampul/sampul-dalam.tex}
-  \clearpage
-  \cleardoublepage
+% Sampul dalam Bahasa Indonesia
+\renewcommand\covercontents{sampul/konten-id.tex}
+\input{sampul/sampul-dalam.tex}
+\clearpage
+\cleardoublepage
 
-  % Sampul dalam Bahasa Inggris
-  \renewcommand\covercontents{sampul/konten-en.tex}
-  \input{sampul/sampul-dalam.tex}
-  \cleardoublepage
+% Sampul dalam Bahasa Inggris
+\renewcommand\covercontents{sampul/konten-en.tex}
+\input{sampul/sampul-dalam.tex}
+\cleardoublepage
 
-  % Pengaturan ukuran indentasi paragraf
-  \setlength{\parindent}{2em}
+% Pengaturan ukuran indentasi paragraf
+\setlength{\parindent}{2em}
 
-  % Pengaturan ukuran spasi paragraf
-  \setlength{\parskip}{1ex}
+% Pengaturan ukuran spasi paragraf
+\setlength{\parskip}{1ex}
 
-  % Pernyataan keaslian
-  \input{lainnya/pernyataan-keaslian.tex}
-  \cleardoublepage
+% Pernyataan keaslian
+% \input{lainnya/pernyataan-keaslian.tex}
+% \cleardoublepage
 
-  % Lembar pengesahan
-  \input{lainnya/lembar-pengesahan.tex}
-  \cleardoublepage
+% Lembar pengesahan
+% \input{lainnya/lembar-pengesahan.tex}
+% \cleardoublepage
 
-  % Nomor halaman pembuka dimulai dari sini
-  \pagenumbering{roman}
+% Nomor halaman pembuka dimulai dari sini
+\pagenumbering{roman}
 
-  % Abstrak Bahasa Indonesia
-  \input{abstrak/abstrak-id.tex}
-  \cleardoublepage
+% Abstrak Bahasa Indonesia
+\input{abstrak/abstrak-id.tex}
+\cleardoublepage
 
-  % Abstrak Bahasa Inggris
-  \input{abstrak/abstrak-en.tex}
-  \cleardoublepage
+% Abstrak Bahasa Inggris
+\input{abstrak/abstrak-en.tex}
+\cleardoublepage
 
-  % Kata pengantar
-  \input{lainnya/kata-pengantar.tex}
-  \cleardoublepage
+% Kata pengantar
+% \input{lainnya/kata-pengantar.tex}
+% \cleardoublepage
 
-  % Daftar isi
-  \renewcommand*\contentsname{DAFTAR ISI}
-  \addcontentsline{toc}{chapter}{\contentsname}
-  \tableofcontents
-  \cleardoublepage
+% Daftar isi
+\renewcommand*\contentsname{DAFTAR ISI}
+\addcontentsline{toc}{chapter}{\contentsname}
+\tableofcontents
+\cleardoublepage
 
-  % Daftar gambar
-  \renewcommand*\listfigurename{DAFTAR GAMBAR}
-  \addcontentsline{toc}{chapter}{\listfigurename}
-  \listoffigures
-  \cleardoublepage
+% Daftar gambar
+\renewcommand*\listfigurename{DAFTAR GAMBAR}
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
 
-  % Daftar tabel
-  \renewcommand*\listtablename{DAFTAR TABEL}
-  \addcontentsline{toc}{chapter}{\listtablename}
-  \listoftables
-  \cleardoublepage
+% Daftar tabel
+\renewcommand*\listtablename{DAFTAR TABEL}
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
 
-  % Nomor halaman isi dimulai dari sini
-  \pagenumbering{arabic}
+% Nomor halaman isi dimulai dari sini
+\pagenumbering{arabic}
 
-  % Bab 1 pendahuluan
-  \input{bab/1-pendahuluan.tex}
-  \cleardoublepage
+% Bab 1 pendahuluan
+\input{bab/1-pendahuluan.tex}
+\cleardoublepage
 
-  % Bab 2 tinjauan pustaka
-  \input{bab/2-tinjauan-pustaka.tex}
-  \cleardoublepage
+% Bab 2 tinjauan pustaka
+\input{bab/2-tinjauan-pustaka.tex}
+\cleardoublepage
 
-  % Bab 3 desain dan implementasi
-  \input{bab/3-desain-implementasi.tex}
-  \cleardoublepage
+% Bab 3 desain dan implementasi
+\input{bab/3-desain-implementasi.tex}
+\cleardoublepage
 
-  % Bab 4 pengujian dan analisis
-  \input{bab/4-pengujian-analisis.tex}
-  \cleardoublepage
+% Bab 4 pengujian dan analisis
+\input{bab/4-pengujian-analisis.tex}
+\cleardoublepage
 
-  % Bab 5 penutup
-  \input{bab/5-penutup.tex}
-  \cleardoublepage
+% Bab 5 penutup
+\input{bab/5-penutup.tex}
+\cleardoublepage
 
-  % Daftar pustaka
-  \renewcommand\bibname{DAFTAR PUSTAKA}
-  \addcontentsline{toc}{chapter}{\bibname}
-  \bibliographystyle{unsrtnat}
-  \bibliography{pustaka/pustaka.bib}
-  \cleardoublepage
+% Daftar pustaka
+\renewcommand\bibname{DAFTAR PUSTAKA}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{unsrtnat}
+\bibliography{pustaka/pustaka.bib}
+\cleardoublepage
 
-  % Biografi penulis
-  \input{lainnya/biografi-penulis.tex}
-  \cleardoublepage
+% Biografi penulis
+\input{lainnya/biografi-penulis.tex}
+\cleardoublepage
 
 \end{document}
