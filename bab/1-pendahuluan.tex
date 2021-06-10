@@ -8,76 +8,74 @@ Penelitian ini dilatar belakangi oleh berbagai kondisi yang menjadi acuan. Selai
 \section{Latar Belakang}
 \label{sec:latarbelakang}
 
-Pesatnya perkembangan roket yang merupakan \lipsum[1]
+Berita adalah laporan atau cerita faktual yang disajikan paling cepat, memiliki pemaparan masalah yang baik, serta berlaku adil kepada seluruh masalah yang disajikan \cite{rani2013persepsi}. Berita memiliki peran yang sangat penting dalam masyarakat karena sebagai media yang dapat digunakan untuk mengetahui peristiwa paling baru, juga dapat digunakan sebagai media untuk menambah wawasan.
 
-\lipsum[2]
+Hoaks atau berita palsu adalah sebuah cara atau usaha yang berusaha untuk menipu orang sehingga mempercayai sesuai yang salah sebagai hal benar dan seringnya hal yang salah tersebut sama sekali tidak masuk akal \cite{berita_bohong}. Selain kerugian dalam hal pengetahuan, berita palsu memiliki efek yang beragam, seperti kerugian dalam bentuk reputasi, harta benda, sampai ancaman pembunuhan.
+
+Berdasarkan data yang diperoleh dari Kementrian Komunikasi dan Informatika total jumlah berita palsu yang ditemukan pada tahun Agustus 2018 sampai dengan Maret 2020 berjumlah 5156. pada bulan Januari 2020 sampai Maret 2020, sudah terdapat 959 berita palsu yang ditemukan \cite{kominfoStatHoax}. Masih dari sumber yang sama, pada bulan Juni 2020, hampir setiap harinya ditemukan puluhan berita palsu baru \cite{kominfoJuni2020}.
+
+Berita hoaks juga memiliki tingkat penyebaran yang cepat seiring dengan semakin tingginya penggunaan media sosial oleh masyarakat. Berdasarkan survey yang dilakukan oleh Khan dan Idris, lebih dari 50\% masyarakat Indonesia memiliki tingkat kecenderungan untuk melakukan share suatu tautan berita tanpa melakukan validasi terlebih dahulu \cite{khan}. Survey lain yang dilakukan oleh Kunto yang melibatkan 480 responden di Kota Jawa Barat menunjukkan bahwa sekitar 30\% masyarakat Jawa Barat memiliki kecenderungan menengah sampai tinggi untuk menyebarkan berita palsu \cite{kuntoUmur}. Dari sampel tersebut, dapat disimpulkan bahwa Indonesia memiliki kecenderungan tinggi untuk menyebarkan berita palsu.
+
+\textit{Neural Networks} adalah salah satu cabang dalam pembelajaran mesin yang menerapkan \textit{neurons} layaknya struktur otak manusia untuk memproses data dan menghasilkan keluaran. Salah satu metode \textit{neural network} yang cukup baru adalah \textit{Bi-directional Encoder Representations from Transformers} atau disingkat sebagai BERT. BERT adalah metode yang digunakan untuk mendapatkan suatu konteks dalam suatu teks yang dimasukkan.
 
 \section{Permasalahan}
 \label{sec:permasalahan}
 
-Dari permasalahan tersebut maka \lipsum[1][1-6]
+Berdasarkan data yang telah dipaparkan di latar belakang, dapat dirumuskan beberapa rumusan masalah sebagai berikut:
+
+\begin{enumerate}[itemsep=-0.2em]
+  \item Cara pendeteksi berita palsu berbahasa Indonesia yang masih menggunakan cara manual.
+
+  \item Masih belum ada model pendeteksi berita palsu berbahasa Indonesia berbasis \textit{deep learning} terkhusus BERT dengan akurasi tinggi.
+
+\end{enumerate}
 
 \section{Tujuan}
 \label{sec:Tujuan}
 
-Tujuan dari \lipsum[1][1-3] adalah:
-
-\begin{enumerate}[nolistsep]
-
-  \item Membuat \lipsum[2][1-3]
-
-  \item \lipsum[3][1-3]
-
-\end{enumerate}
+Tujuan dari penelitian ini adalah pengembangan pendeteksi berita palsu berbahasa Indonesia dengan menggunakan BERT yang diharapkan dapat membantu meningkatkan tingkat efisiensi dan akurasi pendeteksi berita palsu berbahasa Indonesia.
 
 \section{Batasan Masalah}
 \label{sec:batasanmasalah}
 
-Batasan-batasan dari \lipsum[1][1-3] adalah:
+Untuk memfokuskan permasalahan yang diangkat maka dilakukan pembatasan masalah. Batasan - batasan masalah tersebut diantaranya adalah :
 
-\begin{enumerate}[nolistsep]
+\begin{enumerate}[itemsep=-0.2em]
+  \item Data input yang digunakan adalah data yang diambil dari \url{https://data.mendeley.com/datasets/p3hfgr5j3m/1} yang ditambahkan data dari \textit{web crawling} beberapa situs berita.
 
-  \item Mempermudah \lipsum[2][1-3]
+  \item Berita yang akan digunakan dalam penelitian ini adalah berita berbahasa Indonesia.
 
-  \item \lipsum[3][1-5]
+  \item Bahasa Indonesia yang digunakan hanya menggunakan bahasa baku dan tidak memperhitungkan gaya bahasa seperti satir, sarkasme, ironi, hiperbola dan sebagainya.
 
-  \item \lipsum[4][1-5]
+  \item Hasil deteksi berupa label apakah suatu teks termasuk dalam berita hoaks atau tidak.
 
 \end{enumerate}
 
 \section{Sistematika Penulisan}
 \label{sec:sistematikapenulisan}
 
-Laporan penelitian tugas akhir ini terbagi menjadi \lipsum[1][1-3] yaitu:
+Laporan penelitian tugas akhir ini tersusun dalam sistematika dan terstruktur sehingga mudah dipahami dan dipelajari oleh pembaca maupun seseorang yang ingin melanjutkan penelitian ini. Alur sistematika penulisan laporan penelitian ini yaitu :
 
-\begin{enumerate}[nolistsep]
+\begin{enumerate}[topsep=0em]
 
   \item \textbf{BAB I Pendahuluan}
 
-  Bab ini berisi \lipsum[2][1-5]
-
-  \vspace{2ex}
+        Bab ini berisi uraian tentang latar belakang permasalahan, penegasan dan alasan pemilihan judul, sistematika laporan, tujuan dan metodologi penelitian.
 
   \item \textbf{BAB II Tinjauan Pustaka}
 
-  Bab ini berisi \lipsum[3][1-5]
-
-  \vspace{2ex}
+        Bab ini berisi tentang uraian secara sistematis teori - teori yang berhubungan dengan permasalahn yang dibahas pada penelitian ini. Teori - teori ini digunakan sebagai dasar dalam penelitian, yaitu informasi terkait \textit{Deep Learning}, \textit{Transformer}, \textit{Bidirectional Encode Representations from Transformers (BERT)}
 
   \item \textbf{BAB III Desain dan Implementasi Sistem}
 
-  Bab ini berisi \lipsum[4][1-5]
-
-  \vspace{2ex}
+        Bab ini berisi \lipsum[4][1-5]
 
   \item \textbf{BAB IV Pengujian dan Analisa}
 
-  Bab ini berisi \lipsum[5][1-5]
-
-  \vspace{2ex}
+        Bab ini berisi \lipsum[5][1-5]
 
   \item \textbf{BAB V Penutup}
 
-  Bab ini berisi \lipsum[6][1-5]
+        Bab ini berisi \lipsum[6][1-5]
 
 \end{enumerate}
