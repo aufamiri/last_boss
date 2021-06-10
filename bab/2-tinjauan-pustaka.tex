@@ -13,4 +13,24 @@ Ada banyak sekali efek dari berita palsu ini, mulai dari hilangnya reputasi samp
 
 \section{\textit{Machine Learning}}
 
-\textit{Machine Learning} atau Pembelajaran Mesin adalah salah satu cabang dalam kecerdasan buatan dan ilmu komputer yang menggunakan data dan algoritma untuk meniru manusia dalam mempelajari sesuatu. Untuk saat ini, pembelajaran mesin adalah salah satu ilmu yang cukup sering digunakan oleh berbagai perusahaan
+\textit{Machine Learning} atau Pembelajaran Mesin adalah salah satu cabang dalam kecerdasan buatan dan ilmu komputer yang menggunakan data dan algoritma untuk meniru manusia dalam mempelajari sesuatu \cite{ibm_ml_expl}. Salah satu hal yang membuat pembelajaran mesin sangat diminati adalah kemampuannya untuk menyelesaikan suatu tugas dengan sedikit intervensi dari manusia.
+
+Sekarang ini, pembelajaran mesin adalah salah satu fokus yang cukup diminati pada bidang \textit{data science}. Dimana dengan menggunakan pembelajaran mesin, diharapkan suatu kecerdasan buatan dapat menyelesaikan beberapa tugas yang bagi komputer cukup rumit seperti misalnya, memberikan prediksi yang akurat berdasarkan data, melakukan klasifikasi pada teks maupun pada gambar, melakukan pemrosesan citra guna mengenali objek di dalam citra tersebut, dan masih banyak lagi.
+
+Untuk prosesnya sendiri, awalnya kita harus mengumpulkan data, data ini dapat kita ambil dari  berbagai sumber atau bisa juga menggunakan data yang berasal dari instansi atau pribadi (data yang kita buat sendiri). Selanjutnya adalah proses \textit{training} dimana data akan dimasukkan ke dalam model pembelajaran mesin yang sudah dipilih. Kita dapat merubah bebe\rapa parameter dari model tersebut untuk meningkatkan akurasi dari suatu model pembelajaran mesin. Terakhir adalah melakukan proses \textit{testing}, dimana model akan melakukan prediksi pada set data yang berbeda dari yang digunakan pada saat proses \textit{training}. Apabila ternyata tingkat akurasi dirasa kurang memadai, dapat dilakukan proses \textit{re-training} sampai tingkat akurasi nya dirasa cukup. Hasil akhir dari proses ini adalah sebuah model pembelajaran mesin yang dapat digunakan walaupun menggunakan data yang berbeda \cite{mit_ml_expl}.
+
+\subsection{\textit{Supervised Learning}}
+
+Salah satu cabang dalam bidang pembelajaran mesin. Disini data yang dijadikan masukan ke model sudah diberikan label atau struktur tertentu \cite{ms_ml_expl}. Berdasarkan dari data berlabel tersebut, sebuah model akan merubah parameter internalnya agar mendekati atau sesuai dengan label yang diberikan \cite{ibm_ml_expl}. Salah satu contoh model pembelajaran mesin dengan metode pembelajaran seperti ini adalah \textit{Linear Regression, Random Forest}, dan sebagainya.
+
+\subsection{\textit{Unsupervised Learning}}
+
+Salah satu cabang dalam bidang pembelajaran mesin. Disini data yang dijadikan masukan ke model tidak diberikan label sama sekali. Nantinya model akan membuat pengelompokan (\textit{clusters}) dan hubungan berdasarkan dari data yang diberikan \cite{mit_ml_expl}. Contoh model yang menggunakan metode pembelajaran ini adalah \textit{BERT, GPT-2/3} dan sebagainya.
+
+\subsection{\textit{Reinforcement Learning}}
+
+Salah satu cabang dalam bidang pembelajaran mesin. Disini model tidak diberikan data awal sama sekali, namun, model dibiarkan melakukan proses percobaan secara mandiri terus-menerus sampai tercapai hasil atau respon yang diinginkan. Apabila terdapat parameter yang menghasilkan respon positif, maka parameter tersebut disimpan dan digunakan sebagai masukan untuk iterasi \textit{training} berikutnya \cite{mit_ml_expl}.
+
+\section{\textit{Deep Learning}}
+
+Mirip seperti pembelajaran meisn, \textit{Deep Learning} juga merupakan salah satu bidang dalam bidang kecerdasan buatan. Yang membedakan antara pembelajaran mesin biasa dengan \textit{deep learning} adalah penggunaan \textit{layer} yang sangat banyak dibandingkan dengan pembelajaran mesin yang hanya memiliki 3 \textit{layers}. Keuntungan dari model jenis ini adalah model ini dapat memproses masukan yang paling abstrak sekalipun, sehingga menghilangkan proses ekstraksi fitur secara manual \cite{mathwork_deeplearning}. Namun, karena \textit{deep learning} memiliki \textit{layers} yang sangat banyak, maka diperlukan jumlah data yang jauh lebih banyak pula, karena itu pulalah, sebuah model \textit{deep learning} memerlukan daya komputasi yang jauh lebih besar dibandingkan dengan model pembelajaran mesin biasa \cite{mit_ml_expl}.
