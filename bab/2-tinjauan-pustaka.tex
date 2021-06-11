@@ -56,8 +56,8 @@ BERT merupakan suatu model yang cukup baru dan merupakan singkatan dari \textit{
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics{gambar/pendekatan bidirectional.png}
-        \caption{pendekatan dua arah BERT \cite{devlin2019bert}}
+        \includegraphics[width= .8\linewidth]{gambar/bert_archi_base.png}
+        \caption{pendekatan dua arah BERT}
         \label{fig: bidirectionalBert}
     \end{center}
 \end{figure}
@@ -66,14 +66,14 @@ Masukan dari BERT dapat berupa teks mentah dengan sedikit melakukan \textit{prep
 
 \begin{figure}[h!]
     \begin{center}
-        \includegraphics[width= 0.8\linewidth]{gambar/bert.png}
+        \includegraphics[width= 0.9\linewidth]{gambar/bert.png}
         \caption{Token dalam BERT \cite{devlin2019bert}}
         \label{fig: bertToken}
     \end{center}
 \end{figure}
 
-Keluaran dari BERT adalah berupa token - token yang merepresentasikan kalimat tersebut. Nantinya, token - token tersebut dapat digunakan sebagai masukan dari algoritma lain seperti misalnya CNN (pendekatan \textit{fine-tuning}) maupun menggunakan isi token \texttt{[CLS]} sebagai masukan algoritma klasifikasi seperti \textit{Logistic Regression}.
+Keluaran dari BERT adalah berupa token - token yang merepresentasikan kalimat tersebut. Nantinya, token - token tersebut dapat digunakan sebagai masukan dari algoritma lain seperti misalnya CNN, maupun menggunakan isi token \texttt{[CLS]} sebagai masukan algoritma klasifikasi seperti \textit{Logistic Regression}.
 
 Keuntungan dari penggunaan BERT adalah apabila dibandingkan dengan \textit{word2vec} yang juga sama - sama merubah kata - kata menjadi vektor atau token adalah, BERT tidak hanya merubah kata - kata tersebut menjadi token saja, namun juga melakukan relasi dan konteks \textit{learning} sehingga token dapat lebih menunjukkan konteks dari kalimat. Sebagai contoh, dalam kalimat "hadiah untuk ibuku sudah dikemas" dan kalimat "acara tersebut dikemas dengan rapi". Kata - kata "dikemas" disini memiliki 2 arti yang berbeda, yang pertama adalah berarti dibungkus, sedangkan yang kedua adalah ditampilkan. Apabila kita menggunakan \textit{word2vec} biasa, kata - kata "dikemas" akan memiliki token yang sama, sedangkan apabila menggunakan BERT, kata tersebut akan memiliki token yang berbeda. \cite{coenen2019visualizing}
 
-Di Indonesia sendiri sudah terdapat sebuah model BERT yang khusus untuk bahasa Indonesia bernama IndoBERT dengan 12 \textit{layer} dan dilatih menggunakan 31,923 kata dalam bahasa Indonesia \cite{koto2020indolem}. Hal ini kurang lebih sama dengan ukuran BERT-\textit{Base} yang juga memiliki 12 \textit{layer} dan 30,000 kata dalam bahasa Inggris \cite{devlin2019bert}.
+Di Indonesia sendiri sudah terdapat beberapa model BERT yang khusus untuk bahasa Indonesia seperti model yang dibuat oleh Cahya dengan menggunakan gabungan dari 522 MB wikipedia Indonesia dan 1GB surat kabar Indonesia \cite{cahya_bert}, dan IndoBERT dengan 12 \textit{layer} dan dilatih menggunakan 31,923 kata dalam bahasa Indonesia \cite{koto2020indolem}. Hal ini kurang lebih sama dengan ukuran BERT-\textit{Base} yang juga memiliki 12 \textit{layer} dan 30,000 kata dalam bahasa Inggris \cite{devlin2019bert}.
