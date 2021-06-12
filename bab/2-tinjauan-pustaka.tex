@@ -77,3 +77,96 @@ Keluaran dari BERT adalah berupa token - token yang merepresentasikan kalimat te
 Keuntungan dari penggunaan BERT adalah apabila dibandingkan dengan \textit{word2vec} yang juga sama - sama merubah kata - kata menjadi vektor atau token adalah, BERT tidak hanya merubah kata - kata tersebut menjadi token saja, namun juga melakukan relasi dan konteks \textit{learning} sehingga token dapat lebih menunjukkan konteks dari kalimat. Sebagai contoh, dalam kalimat "hadiah untuk ibuku sudah dikemas" dan kalimat "acara tersebut dikemas dengan rapi". Kata - kata "dikemas" disini memiliki 2 arti yang berbeda, yang pertama adalah berarti dibungkus, sedangkan yang kedua adalah ditampilkan. Apabila kita menggunakan \textit{word2vec} biasa, kata - kata "dikemas" akan memiliki token yang sama, sedangkan apabila menggunakan BERT, kata tersebut akan memiliki token yang berbeda. \cite{coenen2019visualizing}
 
 Di Indonesia sendiri sudah terdapat beberapa model BERT yang khusus untuk bahasa Indonesia seperti model yang dibuat oleh Cahya dengan menggunakan gabungan dari 522 MB wikipedia Indonesia dan 1GB surat kabar Indonesia \cite{cahya_bert}, dan IndoBERT dengan 12 \textit{layer} dan dilatih menggunakan 31,923 kata dalam bahasa Indonesia \cite{koto2020indolem}. Hal ini kurang lebih sama dengan ukuran BERT-\textit{Base} yang juga memiliki 12 \textit{layer} dan 30,000 kata dalam bahasa Inggris \cite{devlin2019bert}.
+
+\section{Metode Analisa Performa}
+Terdapat beberapa metode yang bisa dilakukan untuk mengetahui apakah suatu model memiliki akurasi yang cukup. Penelitian ini menggunakan beberapa formula yang sudah ditentukan seperti \textit{recall, precision, f1-score} dan \textit{confusion matrix}.
+
+\subsection{\textit{Recall}}
+
+\textit{Recall} adalah formula yang harus digunakan ketika kita memiliki data yang tidak seimbang. Berbeda dengan akurasi yang hanya menghitung persentase model memprediksi hasil yang sesuai dengan label secara keseluruhan, \textit{recall} akan menghitung rasio nilai yang diprediksi positif dengan total keseluruhan nilai yang positif \cite{metrics_ml}. Rumus \ref{form:recall} merupakan rumus untuk menghitung \textit{recall}.
+
+\begin{equation}
+    Recall = \frac{TP}{TP+FN}
+    \label{form:recall}
+\end{equation}
+
+\subsection{\textit{Precision}}
+
+Seringnya, kita tidak hanya melihat tingkat akurasi suatu model hanya dengan besaran \textit{recall} maupun tingkat akurasi nya. \textit{Precision} adalah formula untuk menghitung rasio dari prediksi TP (\textit{True Positive}) yang benar dengan keseluruhan prediksi. Apabila prediksi yang dilakukan oleh model kita ternyata memiliki tingkat presisi yang tinggi namun memiliki tingkat \textit{recall} yang rendah, ada kemungkinan model tidak dapat melakukan prediksi pada data yang bersifat negatif \cite{metrics_ml}. Rumus \ref{form:precision} merupakan rumus untuk menghitung nilai dari \textit{precision} suatu model.
+
+\begin{equation}
+    Precision = \frac{TP}{TP+FP}
+    \label{form:precision}
+\end{equation}
+
+Baik \textit{recall} maupun \textit{precision} merupakan nilai yang cukup penting terutama pada data yang tidak seimbang. Terdapat 3 kondisi yang umum terjadi pada saat membandingkan antara \textit{precision} dengan \textit{recall}.
+
+\begin{itemize}
+    \item \textit{Recall} tinggi, \textit{Precision} rendah
+
+          Sebagian besar data positif dapat diprediksi dengan benar (\textit{False Negative} yang Rendah), namun hanya ada sebagian kecil data negatif yang diprediksi dengan benar (\textit{True Negative} rendah).
+
+    \item \textit{Recall} rendah, \textit{Precision} tinggi
+
+          Hasil prediksi model memiliki banyak sekali prediksi negatif (\textit{False Negative} tinggi), namun apabila digunakan untuk memprediksi data positif, maka hasil prediksi sebagian besarnya adalah benar (\textit{False Positive} rendah).
+
+    \item \textit{Recall} tinggi, \textit{Precision} tinggi
+
+          Merupakan hasil yang ideal dalam pembuatan model pembelajaran mesin. Disini didapatkan bahwa baik hasil prediksi untuk data positif maupun hasil prediksi untuk data negatif sebagian besarnya adalah benar (\textit{True Positive} dan \textit{True Negative} tinggi).
+
+\end{itemize}
+
+\subsection{\textit{F1-Score}}
+
+\textit{F1-Score} adalah besaran yang berasal dari rata - rata harmonik dari \textit{recall} dan \textit{precision}. Rata  - rata harmonik dipilih karena akan menghasilkan nilai rata - rata yang lebih rendah dalam kondisi tidak seimbang apabila dibandingkan dengan rata - rata aritmatis biasa. Dengan rata - rata seperti itu, suatu model dapat menjadi lebih rentan terhadap bias dan memudahkan pada saat pembuatan model \cite{metrics_ml}. Rumus \ref{form: f1-score} merupakan rumus untuk menghitung f1-score.
+
+\begin{equation}
+    \label{form: f1-score}
+    F1-Score = 2 \times \frac{\textit{Recall} \times \textit{Precision}}{\textit{Recall} + \textit{Precision}}
+\end{equation}
+
+\subsection{\textit{Confusion Matrix}}
+
+\textit{Confusion Matrix} adalah tabel kesimpulan yang berisi jumlah prediksi baik yang benar maupun yang salah dan nilai label baik yang benar maupun salah. Biasanya tabel jenis ini digunakan untuk tugas yang bersifat klasifikasi dan berfungsi untuk memvisualisasi bagaimana suatu performa model dalam suatu dataset.
+
+\begin{table}
+    \caption{Contoh \textit{Confusion Matrix}}
+    \label{tab:cth_confusion_mtrx}
+    \centering
+    \begin{tabular}{|l|l|l|l|l}
+        \cline{1-4}
+        \multicolumn{2}{|l|}{\multirow{2}{*}{}} & \multicolumn{2}{l|}{\textbf{Aktual}} &                \\ \cline{3-4}
+        \multicolumn{2}{|l|}{}                  & Positif                              & Negatif &      \\ \cline{1-4}
+        \multirow{2}{*}{\textbf{Prediksi}}      & Positif                              & TP      & FP & \\ \cline{2-4}
+                                                & Negatif                              & TN      & FN & \\ \cline{1-4}
+    \end{tabular}
+\end{table}
+
+Tabel \ref{tab:cth_confusion_mtrx} adalah contoh tabel \textit{confussion matrix} untuk prediksi dengan 2 label. Apabila melihat pada tabel tersebut, dapat terlihat bahwa jumlah prediksi dipecah menjadi masing - masing kelas. Diharapkan dengan dipecah menjadi beberapa kelas seperti itu, akan membuat proses pengujian lebih mudah karena akan lebih mudah melihat pada saat model memprediksi jenis data apa yang masih memiliki tingkat akurasi yang kurang bagus. Terdapat beberapa hal yang harus diketahui untuk dapat memahami sebuah tabel \textit{confussion matrix}, yaitu :
+
+\begin{itemize}[nolistsep]
+    \item Positif (P)
+
+          Berisi data yang bernilai positif, baik data tersebut beasal dari hasil prediksi maupun data aktual yang didapat dari dataset.
+
+    \item Negatif (N)
+
+          Berisi data yang bernilai negatif, baik data tersebut berasal dari hasil prediksi maupun data aktual yang didapat dari dataset.
+
+    \item \textit{True Positive} (TP)
+
+          Suatu kondisi dimana baik hasil prediksi maupun data aktual sama - sama bernilai positif. Semakin tinggi nilai dari TP, semakin akurat pulalah model yang sudah dibuat.
+
+    \item \textit{False Positive} (FP)
+
+          Suatu kondisi dimana hasil prediksi adalah positif, namun pada data aktual bernilai negatif. Biasanya, semakin tinggi nilai dari FP ini, maka model semakin memilki kecenderungan untuk mengeluarkan nilai positif dibanding negatif atau terjadinya bias pada model.
+
+    \item \textit{True Negative} (TN)
+
+          Suatu kondisi dimana hasil prediksi adalah negatif, namun pada data aktual bernilai positif. Biasanya, semakin tinggi nilai dari TN ini, maka model semakin memiliki kecenderungan untuk mengeluarkan nilai negatif dibanding positif.
+
+    \item \textit{False Negative} (FN)
+
+          Suatu kondisi dimana hasil prediksi dan data aktual bernilai negatif. Semakin tinggi nilai FN berarti semakin akurat model yang sudah dibuat.
+
+\end{itemize}
