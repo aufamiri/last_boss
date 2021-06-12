@@ -39,6 +39,7 @@
 \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{wrapfig}
+\usepackage{amsmath}
 
 % Definisi untuk "Hati ini sengaja dikosongkan"
 \patchcmd{\cleardoublepage}{\hbox{}}{
@@ -97,6 +98,9 @@
 % Sampul luar Bahasa Indonesia
 \newcommand\covercontents{sampul/konten-id.tex}
 \input{sampul/sampul-luar.tex}
+
+%Setup Table
+\renewcommand{\arraystretch}{1.5}
 
 % Atur ulang penomoran halaman
 \setcounter{page}{1}

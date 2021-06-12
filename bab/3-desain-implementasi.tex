@@ -224,3 +224,50 @@ Pada tahap ini juga dilakukan pengaturan ukuran \textit{batch}, \textit{learning
 Proses pengujian dalam penelitian ini dibagi menjadi 2 bagian, bagian yang pertama dilakukan pada saat model selesai melakukan proses \textit{training} namun masih memiliki iterasi \textit{epoch} yang belum selesai. Proses ini bernama validasi. Proses ini sangat vital karena dengan validasi kita dapat mengetahui apakah model kita mengalami \textit{overfitting} maupun \textit{underfitting}. Salah satu ciri yang paling mudah yang menandakan kemungkinan terjadinya \textit{overfitting} adalah ketika besaran \textit{training loss} suatu model menjadi semakin kecil, namun besaran \textit{validation loss}-nya malah semakin besar di setiap iterasi. Sedangkan \textit{underfitting} terjadi ketika baik \textit{training loss} maupun \textit{validation loss} memiliki nilai yang terlalu besar. Selain itu pada proses validasi ini, data yang digunakan adalah data yang sama sekali baru dan tidak digunakan selama proses \textit{training} guna menghindari kemungkinan terjadinya bias yang biasa terjadi apabila suatu model diuji pada data yang sama yang digunakan pada saat proses \textit{training}. Berdasarkan data pada proses validasi, algoritma \textit{optimizer} akan memutuskan untuk merubah \textit{weight} dalam \textit{hidden node} BERT sehingga semakin mendekati titk akurasi tertingginya.
 
 Bagian selanjutnya dari proses pengujian adalah melakukan \textit{test}. Sama seperti pada waktu proses validasi, dataset yang digunakan juga sama sekali berbeda dengan data yang digunakan pada waktu \textit{training} maupun pada waktu \textit{validasi}. Dari proses ini, dapat diambil kesimpulan apakah suatu model tersebut dapat dilakukan perbaikan lagi denga cara \textit{re-training} dan merubah beberapa parameter maupun konfigurasi yang sudah diatur pada saat proses \textit{training}, ataukah model tersebut dirasa sudah cukup baik dan akan melanjutkan ke proses berikutnya.
+
+\section{Analisa Performa}
+Proses ini dilakukan untuk mengetahui bagaimana tingkat akurasi dari model yang sudah dibuat. Penelitian ini menggunakan beberapa formula yang sudah ditentukan seperti \textit{recall, precision, f1-score} dan \textit{confusion matrix}.
+
+\subsection{\textit{Recall}}
+
+\textit{Recall} adalah formula yang harus digunakan ketika kita memiliki data yang tidak seimbang. Berbeda dengan akurasi yang hanya menghitung persentase model memprediksi hasil yang sesuai dengan label secara keseluruhan, \textit{recall} akan menghitung rasio nilai yang diprediksi positif dengan total keseluruhan nilai yang positif \cite{metrics_ml}. Rumus \ref{form:recall} merupakan rumus untuk menghitung \textit{recall}.
+
+\begin{equation}
+  Recall = \frac{TP}{TP+FN}
+  \label{form:recall}
+\end{equation}
+
+\subsection{\textit{Precision}}
+
+Seringnya, kita tidak hanya melihat tingkat akurasi suatu model hanya dengan besaran \textit{recall} maupun tingkat akurasi nya. \textit{Precision} adalah formula untuk menghitung rasio dari prediksi TP (\textit{True Positive}) yang benar dengan keseluruhan prediksi. Apabila prediksi yang dilakukan oleh model kita ternyata memiliki tingkat presisi yang tinggi namun memiliki tingkat \textit{recall} yang rendah, ada kemungkinan model tidak dapat melakukan prediksi pada data yang bersifat negatif \cite{metrics_ml}. Rumus \ref{form:precision} merupakan rumus untuk menghitung nilai dari \textit{precision} suatu model.
+
+\begin{equation}
+  Precision = \frac{TP}{TP+FP}
+  \label{form:precision}
+\end{equation}
+
+Baik \textit{recall} maupun \textit{precision} merupakan nilai yang cukup penting terutama pada data yang tidak seimbang. Terdapat 3 kondisi yang umum terjadi pada saat membandingkan antara \textit{precision} dengan \textit{recall}.
+
+\begin{itemize}
+  \item \textit{Recall} tinggi, \textit{Precision} rendah
+
+        Sebagian besar data positif dapat diprediksi dengan benar (\textit{False Negative} yang Rendah), namun hanya ada sebagian kecil data negatif yang diprediksi dengan benar (\textit{True Negative} rendah).
+
+  \item \textit{Recall} rendah, \textit{Precision} tinggi
+
+        Hasil prediksi model memiliki banyak sekali prediksi negatif (\textit{False Negative} tinggi), namun apabila digunakan untuk memprediksi data positif, maka hasil prediksi sebagian besarnya adalah benar (\textit{False Positive} rendah).
+
+  \item \textit{Recall} tinggi, \textit{Precision} tinggi
+
+        Merupakan hasil yang ideal dalam pembuatan model pembelajaran mesin. Disini didapatkan bahwa baik hasil prediksi untuk data positif maupun hasil prediksi untuk data negatif sebagian besarnya adalah benar (\textit{True Positive} dan \textit{True Negative} tinggi).
+
+\end{itemize}
+
+\subsection{\textit{F1-Score}}
+
+\textit{F1-Score} adalah besaran yang berasal dari rata - rata harmonik dari \textit{recall} dan \textit{precision}. Rata  - rata harmonik dipilih karena akan menghasilkan nilai rata - rata yang lebih rendah dalam kondisi tidak seimbang apabila dibandingkan dengan rata - rata aritmatis biasa. Dengan rata - rata seperti itu, suatu model dapat menjadi lebih rentan terhadap bias dan memudahkan pada saat pembuatan model \cite{metrics_ml}. Rumus \ref{form: f1-score} merupakan rumus untuk menghitung f1-score.
+
+\begin{equation}
+  \label{form: f1-score}
+  F1-Score = 2 \times \frac{\textit{Recall} \times \textit{Precision}}{\textit{Recall} + \textit{Precision}}
+\end{equation}
