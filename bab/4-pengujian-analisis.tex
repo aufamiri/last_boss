@@ -131,6 +131,36 @@ Dapat dilihat pada tabel \ref{tab: const_akhir}, model dengan cara memotong teks
 
 Pengujian ini berdasarkan pada penelitian Chi Sun et al. yang menemukan bahwa dengan strategi pengambilan teks yang dibagi dua seperti ini akan dapat memberikan nilai akurasi yang lebih baik apabila dibandingkan dengan mengambil hanya di bagian awal maupun di bagian akhir saja \cite{sun2019fine}. Alasan dari penyebab lebih tingginya akurasi adalah karena dengan mengambil sebagian di awal maka sebagian dari ringkasan berita akan didapatkan, sedangkan mengambil sebagian di akhir adalah agar kesimpulan berita juga masuk ke dalam proses \textit{training}. Namun, pengujian tersebut dilakukan pada dataset teks berita berbahasa Inggris sehingga masih harus dilakukan pengujian lagi pada dataset teks berita berbahasa Indonesia.
 
+\begin{table}[]
+    \caption{Hasil Pengujian dengan Mengambil Tengah Teks}
+    \label{tab: const_tengah}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 120  \\ \cline{2-3}
+                                                   & FP             & 19   \\ \cline{2-3}
+                                                   & TN             & 134  \\ \cline{2-3}
+                                                   & FN             & 19   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 88\% \\ \cline{2-3}
+                                                   & Valid          & 86\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 88\% \\ \cline{2-3}
+                                                   & Valid          & 86\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 88\% \\ \cline{2-3}
+                                                   & Valid          & 86\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 87\%                  \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_concat_tengah.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan Mengambil Bagian Tengah Teks}
+        \label{fig: loss_const_tengah}
+    \end{center}
+\end{figure}
+
+
 \section{Pengujian Performa berdasarkan model BERT yang digunakan}
 
 Terdapat banyak sekali model BERT yang sudah dibuat oleh berbagai orang di internet, ada model yang memiliki kemampuan \textit{multilanguage} sehingga bisa digunakan di berbagai bahasa sekaligus, namun kebanyakan model yang beredar adalah model yang menggunakan bahasa yang spesifik. Hal ini karena waktu \textit{pre-training} yang lebih singkat karena dataset yang lebih sedikit apabila dibandingkan model dengan kemampuan \textit{multilanguage} dan karena waktu \textit{pre-training} lebih sedikit, maka sumber daya yang digunakan juga menjadi lebih sedikit. Selain itu, dan hal ini adalah yang paling penting, hasil akurasi dari model yang hanya menggunakan 1 bahasa memiliki tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model dengan banyak bahasa sekaligus.
