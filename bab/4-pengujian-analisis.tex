@@ -166,3 +166,26 @@ Pengujian ini berdasarkan pada penelitian Chi Sun et al. yang menemukan bahwa de
 Terdapat banyak sekali model BERT yang sudah dibuat oleh berbagai orang di internet, ada model yang memiliki kemampuan \textit{multilanguage} sehingga bisa digunakan di berbagai bahasa sekaligus, namun kebanyakan model yang beredar adalah model yang menggunakan bahasa yang spesifik. Hal ini karena waktu \textit{pre-training} yang lebih singkat karena dataset yang lebih sedikit apabila dibandingkan model dengan kemampuan \textit{multilanguage} dan karena waktu \textit{pre-training} lebih sedikit, maka sumber daya yang digunakan juga menjadi lebih sedikit. Selain itu, dan hal ini adalah yang paling penting, hasil akurasi dari model yang hanya menggunakan 1 bahasa memiliki tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model dengan banyak bahasa sekaligus.
 
 Untuk model BERT yang menggunakan hanya bahasa Indonesia, terdapat 2 model yang bisa ditemukan pada waktu buku ini ditulis. Yang pertama dibuat oleh Bryan Wilie et al., sebagai bagian dari pengujian \textit{benchmark} berbahasa Indonesia dengan model BERT yang dilatih khusus dengan dataset berbahasa Indonesia juga \cite{wilie2020indonlu}. Hasil dari pengujian tersebut adalah model yang mereka buat berhasil memperoleh tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model - model lain seperti XLM atau mBERT yang memiliki dukungan untuk melakukan tugas prediksi dengan banyak bahasa sekaligus \cite{wilie2020indonlu}. Model kedua dibuat oleh Candra Wirawan dengan melatih model pada 520MB data berasal dari Wikipedia Indonesia dan 1GB data berasal dari teks berita Indonesia. Sayangnya, tidak ada informasi lebih lanjut pada model ini selain data yang dipakai untuk \textit{pre-training}.
+
+Selain model BERT yang hanya berisi bahasa Indonesia, kami juga melakukan percobaan pada model BERT yang mendukung \textit{multilanguage} dan model BERT yang hanya berisi bahasa Melayu. Bahasa Melayu dipilih karena kedekatan \textit{grammar} dan konteks dengan susunan kata berbahasa Indonesia. Untuk model yang mendukung \textit{multilanguage} kami menggunakan varian \textit{official} yang dibuat oleh Google, yaitu model \texttt{bert-multilingual-uncased} yang sudah mendukung 104 bahasa yang berasal dari Wikipedia. Sedangkan untuk model dengan bahasa Melayu, kami menggunakan model \texttt{bert-base-bahasa-standard-cased} yang sudah dilatih di beberapa sumber seperti Wikipedia, Wattpad, Berita, Sosial Media dan masih banyak lagi \cite{Malaya}
+
+\begin{figure}[h]
+    \centering
+    \subcaptionbox{\textit{Loss} pada model BERT Bahasa Melayu}{
+        \includegraphics[width=.47\textwidth]{gambar/loss_bert_bahasa.png}
+    }
+    \subcaptionbox{\textit{Loss} pada model BERT \textit{Multilingual}}{
+        \includegraphics[width=.47\textwidth]{gambar/loss_bert_multilingual.png}
+    }
+    \subcaptionbox{\textit{Loss} pada model BERT IndoBERT}{
+        \includegraphics[width=.47\textwidth]{gambar/loss_concat_awal.png}
+    }
+    \subcaptionbox{\textit{Loss} pada model BERT Cahya 1.5GB}{
+        \includegraphics[width=.47\textwidth]{gambar/loss_cahya_bert_1,5.png}
+    }
+    \subcaptionbox{\textit{Loss} pada model BERT Cahya 522MB}{
+        \includegraphics[width=.47\textwidth]{gambar/loss_cahya_bert_522.png}
+    }
+    \caption{\textit{Loss} pada Model BERT yang digunakan}
+    \label{fig:loss_bert_model}
+\end{figure}
