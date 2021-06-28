@@ -190,9 +190,9 @@ Terdapat banyak sekali model BERT yang sudah dibuat oleh berbagai orang di inter
 
 Untuk melakukan \textit{training}, sebelumnya kami mengatur konfigurasi yang akan digunakan oleh model BERT yang sudah disiapkan. Terdapat beberapa perbedaan pada konfigurasi seperti jumlah \textit{epoch} dan jumlah \textit{dropout}. Hal ini agar membuat model dapat memiliki konfigurasi yang lebih optimal dan tidak mengalami \textit{overfit} maupun \textit{underfit}.
 
-\subsection{Pengujian pada model \textit{bert-base-bahasa-standard-case}}
+\subsection{Pengujian pada model khusus bahasa Melayu}
 
-Model ini adalah model yang di-\textit{pretrained} menggunakan bahasa Melayu saja dengan mengambil berbagai sumber dataset seperti media sosial, Wikipedia, sampai Wattpad \cite{Malaya}. Model ini dilatih oleh huzeinzol05 dan menurut pembuat model, model ini seharusnya dapat digunakan baik untuk tugas - tugas berbahasa Melayu maupun tugas - tugas berbahasa Indonesia dikarenakan kesamaan pada tata bahasa dan arti suatu kata.
+Model yang diberi nama \textit{bert-base-bahasa-standard-case} adalah model yang di-\textit{pretrained} menggunakan bahasa Melayu saja dengan mengambil berbagai sumber dataset seperti media sosial, Wikipedia, sampai Wattpad \cite{Malaya}. Model ini dilatih oleh huzeinzol05 dan menurut pembuat model, model ini seharusnya dapat digunakan baik untuk tugas - tugas berbahasa Melayu maupun tugas - tugas berbahasa Indonesia dikarenakan kesamaan pada tata bahasa dan arti suatu kata. Dalam buku ini model ini disebutkan dengan \textit{bert-bahasa}
 
 \begin{figure}[h]
     \begin{center}
@@ -223,6 +223,76 @@ Model ini adalah model yang di-\textit{pretrained} menggunakan bahasa Melayu saj
     \end{tabular}
 \end{table}
 
-Pada gambar \ref{fig:loss_bert_bahasa} terlihat bahwa model memiliki nilai \textit{validation loss} dan \textit{training loss} yang sedikit \textit{underfitting}. Namun, apabila diuji dengan menambahkan epoch, hasil pengujian tersebut menghasilkan model yang \textit{overfitting} sehingga tidak kami gunakan sebagai nilai pembanding. Berdasarkan tabel \ref{tab: loss_bahasa}, terlihat bahwa \textit{recall} lebih tinggi dibanding \textit{precision} saat mendeteksi berita hoaks, sehingga dapat disimpulkan bahwa model mengalami
+Pada gambar \ref{fig: loss_bert_bahasa} terlihat bahwa model memiliki nilai \textit{validation loss} dan \textit{training loss} yang cukup bagus. Namun, apabila diuji dengan menambahkan epoch, hasil pengujian tersebut menghasilkan model yang \textit{overfitting} sehingga tidak kami gunakan sebagai nilai pembanding. Berdasarkan tabel \ref{tab: loss_bahasa}, terlihat bahwa \textit{recall} lebih tinggi dibanding \textit{precision} saat mendeteksi berita hoaks, sehingga dapat disimpulkan bahwa model mengalami kesulitan saat digunakan untuk mendeteksi berita yang valid.
+
+\subsection{Pengujian pada model dengan kemampuan multibahasa}
+
+Model BERT yang digunakan pada pengujian ini adalah model dasar yang dibuat langsung oleh tim di Google. Selain itu, model ini jugalah yang merupakan hasil dari penelitian yang sudah dibuat oleh devlin et al. dalam penelitian awal mengenai BERT. Model ini dilatih pada seluruh bahasa yang ada pada Wikipedia sehingga untuk saat ini, model tersebut dapat mendukung sebanyak 104 bahasa sekaligus termasuk didalamnya adalah bahasa Indonesia. Oleh tim dari Google, model ini diberi nama \textit{bert-base-multilingual-uncased} dan dalam buku ini disingkat sebagai \textit{bert-base}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_bert_multilingual.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan model \textit{bert-base}}
+        \label{fig: loss_bert_multilingual}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian dengan model \textit{bert-base}}
+    \label{tab: loss_multilingual}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 135  \\ \cline{2-3}
+                                                   & FP             & 38   \\ \cline{2-3}
+                                                   & TN             & 115  \\ \cline{2-3}
+                                                   & FN             & 4    \\ \hline
+        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 97\% \\ \cline{2-3}
+                                                   & Valid          & 78\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 75\% \\ \cline{2-3}
+                                                   & Valid          & 97\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 85\% \\ \cline{2-3}
+                                                   & Valid          & 87\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 86\%                  \\ \hline
+    \end{tabular}
+\end{table}
+
+Mirip seperti pada model \textit{bert-bahasa}, model \textit{bert-base} ini adalah model dengan grafik yang cukup bagus, terlihat pada gambar \ref{fig: loss_bert_multilingual}, nilai dari \textit{training loss} memilki \textit{trend} yang kurang lebih sama apabila dibandingkan dengan nilai \textit{validation loss}. Namun, apabila melihat dari tabel \ref{tab: loss_multilingual} nilai dari \textit{recall} dan \textit{precision}-nya menunjukkan model kesulitan dalam mendeteksi berita valid.
+
+\subsection{Pengujian pada model \textit{indobert-base-p1}}
+
+Model BERT ini adalah salah satu dari 3 model khusus berbahasa Indonesia yang diuji dalam penelitian ini. Dibuat oleh tim indobenchmarksebagai bagian dari penelitian untuk uji \textit{benchmarking} pada \textit{Natural Language Understanding} (NLU) berbahasa Indonesia. Diantara model - model BERT khusus bahasa Indonesia yang lain, model ini adalah model yang dilatih pada dataset terbanyak, yaitu sebesar 23 GB lebih data yang berasal dari banyak sumber seperti Wikipedia, sosial media, OpenSubtitle, dan banyak lagi \cite{koto2020indolem}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_concat_awal.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan model \textit{indobert}}
+        \label{fig: loss_bert_indobert}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian dengan model \textit{indobert}}
+    \label{tab: loss_indobert}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 122  \\ \cline{2-3}
+                                                   & FP             & 16   \\ \cline{2-3}
+                                                   & TN             & 137  \\ \cline{2-3}
+                                                   & FN             & 17   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 89\% \\ \cline{2-3}
+                                                   & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 90\% \\ \cline{2-3}
+                                                   & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 89\% \\ \cline{2-3}
+                                                   & Valid          & 88\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 89\%                  \\ \hline
+    \end{tabular}
+\end{table}
+
+Sebagai model yang dilatih pada dataset khusus berbahasa Indonesia yang paling banyak, model ini memiliki tingkat akurasi yang paling tinggi apabila dibanding model - model yang lain. Gambar \ref{fig: loss_bert_indobert} menunjukkan grafik \textit{loss} dari model ini, terlihat pada grafik tersebut, nilai \textit{validation loss} nya sudah lebih tinggi dari \textit{training loss}-nya sehingga model sudah sedikit \textit{overfit}.
 
 
