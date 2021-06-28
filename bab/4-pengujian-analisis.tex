@@ -208,18 +208,19 @@ Model yang diberi nama \textit{bert-base-bahasa-standard-case} adalah model yang
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
-        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 124  \\ \cline{2-3}
-                                                   & FP             & 28   \\ \cline{2-3}
-                                                   & TN             & 125  \\ \cline{2-3}
-                                                   & FN             & 15   \\ \hline
-        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 89\% \\ \cline{2-3}
-                                                   & Valid          & 82\% \\ \hline
-        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 82\% \\ \cline{2-3}
-                                                   & Valid          & 89\% \\ \hline
-        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 85\% \\ \cline{2-3}
-                                                   & Valid          & 85\% \\ \hline
-        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 85\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 124  \\ \cline{2-3}
+                                                                & FP             & 28   \\ \cline{2-3}
+                                                                & TN             & 125  \\ \cline{2-3}
+                                                                & FN             & 15   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 89\% \\ \cline{2-3}
+                                                                & Valid          & 82\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 82\% \\ \cline{2-3}
+                                                                & Valid          & 89\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 85\% \\ \cline{2-3}
+                                                                & Valid          & 85\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 85\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 03:43                 \\ \hline
     \end{tabular}
 \end{table}
 
@@ -243,22 +244,95 @@ Model BERT yang digunakan pada pengujian ini adalah model dasar yang dibuat lang
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
-        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 135  \\ \cline{2-3}
-                                                   & FP             & 38   \\ \cline{2-3}
-                                                   & TN             & 115  \\ \cline{2-3}
-                                                   & FN             & 4    \\ \hline
-        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 97\% \\ \cline{2-3}
-                                                   & Valid          & 78\% \\ \hline
-        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 75\% \\ \cline{2-3}
-                                                   & Valid          & 97\% \\ \hline
-        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 85\% \\ \cline{2-3}
-                                                   & Valid          & 87\% \\ \hline
-        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 86\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 135  \\ \cline{2-3}
+                                                                & FP             & 38   \\ \cline{2-3}
+                                                                & TN             & 115  \\ \cline{2-3}
+                                                                & FN             & 4    \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 97\% \\ \cline{2-3}
+                                                                & Valid          & 78\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 75\% \\ \cline{2-3}
+                                                                & Valid          & 97\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 85\% \\ \cline{2-3}
+                                                                & Valid          & 87\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 86\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:07                 \\ \hline
     \end{tabular}
 \end{table}
 
 Mirip seperti pada model \textit{bert-bahasa}, model \textit{bert-base} ini adalah model dengan grafik yang cukup bagus, terlihat pada gambar \ref{fig: loss_bert_multilingual}, nilai dari \textit{training loss} memilki \textit{trend} yang kurang lebih sama apabila dibandingkan dengan nilai \textit{validation loss}. Namun, apabila melihat dari tabel \ref{tab: loss_multilingual} nilai dari \textit{recall} dan \textit{precision}-nya menunjukkan model kesulitan dalam mendeteksi berita valid.
+
+\subsection{Pengujian pada model \textit{bert-base-indonesian-522M}}
+
+Merupakan model yang dibuat oleh Cahya Wirawan dengan memanfaatkan dataset yang berasal dari Wikipedia berbahasa Indonesia sebesar 522M. Model ini merupakan model dengan ukuran dataset yang paling kecil apabila dibandingkan dengan model - model yang digunakan dalam pengujian ini. Dalam buku ini model ini disebut sebagai \textit{cahya-522M}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_cahya_bert_522.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan model \textit{cahya-522M}}
+        \label{fig: loss_bert_cahya522}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian dengan model \textit{cahya-522M}}
+    \label{tab: loss_cahya522}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 122  \\ \cline{2-3}
+                                                                & FP             & 31   \\ \cline{2-3}
+                                                                & TN             & 122  \\ \cline{2-3}
+                                                                & FN             & 17   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 88\% \\ \cline{2-3}
+                                                                & Valid          & 80\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 80\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 84\% \\ \cline{2-3}
+                                                                & Valid          & 84\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 84\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:03                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Dari tabel \ref{tab: loss_cahya522} dapat dilihat bahwa model memiliki tingkat akurasi yang paling sedikit apabila dibandingkan dengan model - model yang lain. Hal ini karena BERT sebagai model yang cukup kompleks sangat bergantung pada data yang digunakan saat \textit{pre-trained}. Namun, model ini juga memiliki waktu \textit{training} yang paling sedikit dibanding model - model lain yang digunakan dalam pengujian ini. Selain itu, berdasarkan pada nilai \textit{recall} dan \textit{precision}-nya, dapat diambil kesimpulan bahwa model kurang bagus dalam mendeteksi berita valid. Gambar \ref{fig: loss_bert_cahya522} menunjukkan nilai \textit{validation loss} yang menunjukkan tanda - tanda akan terjadi \textit{overfit}.
+
+\subsection{Pengujian pada model \textit{bert-base-indonesian-1.5G}}
+
+Sama seperti model sebelumnya, model ini juga dibuat oleh Cahya Wirawan. Yang menjadi pembeda antara model ini dengan model sebelumnya adalah penambahan dataset menjadi tidak hanya berasal dari Wikipedia bahasa Indonesia saja, namun juga menambahkan dari situs - situs berita berbahasa Indonesia sebear 1G, sehingga membuat total dataset yang digunakan pada waktu \textit{pre-trained} adalah 1.5G. Pada laporan ini, model ini disebut dengan \textit{cahya-1.5G}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_cahya_bert_1,5.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan model \textit{cahya-1.5G}}
+        \label{fig: loss_cahya1.5}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian dengan model \textit{cahya-1.5G}}
+    \label{tab: loss_cahya1.5}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 130  \\ \cline{2-3}
+                                                                & FP             & 30   \\ \cline{2-3}
+                                                                & TN             & 123  \\ \cline{2-3}
+                                                                & FN             & 9    \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 93\% \\ \cline{2-3}
+                                                                & Valid          & 81\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 80\% \\ \cline{2-3}
+                                                                & Valid          & 94\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 86\% \\ \cline{2-3}
+                                                                & Valid          & 87\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 87\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:08                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Hampir mirip seperti pada model sebelumnya, pada tabel \ref{tab: loss_cahya1.5} terlihat bahwa model ini agak kesulitan untuk mendeteksi berita valid, sehingga nilai FP-nya juga cukup tinggi. Namun, apabila dibandingkan
 
 \subsection{Pengujian pada model \textit{indobert-base-p1}}
 
@@ -278,21 +352,22 @@ Model BERT ini adalah salah satu dari 3 model khusus berbahasa Indonesia yang di
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
-        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 122  \\ \cline{2-3}
-                                                   & FP             & 16   \\ \cline{2-3}
-                                                   & TN             & 137  \\ \cline{2-3}
-                                                   & FN             & 17   \\ \hline
-        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 89\% \\ \cline{2-3}
-                                                   & Valid          & 88\% \\ \hline
-        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 90\% \\ \cline{2-3}
-                                                   & Valid          & 88\% \\ \hline
-        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 89\% \\ \cline{2-3}
-                                                   & Valid          & 88\% \\ \hline
-        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 89\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 122  \\ \cline{2-3}
+                                                                & FP             & 16   \\ \cline{2-3}
+                                                                & TN             & 137  \\ \cline{2-3}
+                                                                & FN             & 17   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 89\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 90\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 89\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 89\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:05                 \\ \hline
     \end{tabular}
 \end{table}
 
-Sebagai model yang dilatih pada dataset khusus berbahasa Indonesia yang paling banyak, model ini memiliki tingkat akurasi yang paling tinggi apabila dibanding model - model yang lain. Gambar \ref{fig: loss_bert_indobert} menunjukkan grafik \textit{loss} dari model ini, terlihat pada grafik tersebut, nilai \textit{validation loss} nya sudah lebih tinggi dari \textit{training loss}-nya sehingga model sudah sedikit \textit{overfit}.
+Sebagai model yang dilatih pada dataset khusus berbahasa Indonesia yang paling banyak, model ini memiliki tingkat akurasi yang paling tinggi apabila dibanding model - model yang lain. Gambar \ref{fig: loss_bert_indobert} menunjukkan grafik \textit{loss} dari model ini, terlihat pada grafik tersebut, nilai \textit{validation loss} nya sudah lebih tinggi dari \textit{training loss}-nya sehingga model sudah sedikit \textit{overfit}. Berdasarkan pada tabel \ref{tab: loss_indobert}, dapat dilihat bahwa model ini memiliki tingkat akurasi yang paling tinggi apabila dibandingkan dengan model - model yang lain.
 
 
