@@ -163,11 +163,15 @@ Pengujian ini berdasarkan pada penelitian Chi Sun et al. yang menemukan bahwa de
 
 \section{Pengujian Performa berdasarkan model BERT yang digunakan}
 
-Terdapat banyak sekali model BERT yang sudah dibuat oleh berbagai orang di internet, ada model yang memiliki kemampuan \textit{multilanguage} sehingga bisa digunakan di berbagai bahasa sekaligus, namun kebanyakan model yang beredar adalah model yang menggunakan bahasa yang spesifik. Hal ini karena waktu \textit{pre-training} yang lebih singkat karena dataset yang lebih sedikit apabila dibandingkan model dengan kemampuan \textit{multilanguage} dan karena waktu \textit{pre-training} lebih sedikit, maka sumber daya yang digunakan juga menjadi lebih sedikit. Selain itu, dan hal ini adalah yang paling penting, hasil akurasi dari model yang hanya menggunakan 1 bahasa memiliki tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model dengan banyak bahasa sekaligus.
+Terdapat banyak sekali model BERT yang sudah dibuat oleh berbagai orang di internet, ada model yang memiliki kemampuan \textit{multilanguage} sehingga bisa digunakan di berbagai bahasa sekaligus, namun kebanyakan model yang beredar adalah model yang menggunakan bahasa yang spesifik. Hal ini karena waktu \textit{pre-training} yang lebih singkat karena dataset yang lebih sedikit apabila dibandingkan model dengan kemampuan \textit{multilanguage} dan karena waktu \textit{pre-training} lebih sedikit, maka sumber daya yang digunakan juga menjadi lebih sedikit. Selain itu, dan hal ini adalah yang paling penting, hasil akurasi dari model yang hanya menggunakan 1 bahasa memiliki tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model dengan banyak bahasa sekaligus. Maka dari itu, kami menguji pada beberapa model BERT sekaligus dengan rincian nama model sebagai berikut :
 
-Untuk model BERT yang menggunakan hanya bahasa Indonesia, terdapat 2 model yang bisa ditemukan pada waktu buku ini ditulis. Yang pertama dibuat oleh Bryan Wilie et al., sebagai bagian dari pengujian \textit{benchmark} berbahasa Indonesia dengan model BERT yang dilatih khusus dengan dataset berbahasa Indonesia juga \cite{wilie2020indonlu}. Hasil dari pengujian tersebut adalah model yang mereka buat berhasil memperoleh tingkat akurasi yang lebih tinggi apabila dibandingkan dengan model - model lain seperti XLM atau mBERT yang memiliki dukungan untuk melakukan tugas prediksi dengan banyak bahasa sekaligus \cite{wilie2020indonlu}. Model kedua dibuat oleh Candra Wirawan dengan melatih model pada 520MB data berasal dari Wikipedia Indonesia dan 1GB data berasal dari teks berita Indonesia. Sayangnya, tidak ada informasi lebih lanjut pada model ini selain data yang dipakai untuk \textit{pre-training}.
-
-Selain model BERT yang hanya berisi bahasa Indonesia, kami juga melakukan percobaan pada model BERT yang mendukung \textit{multilanguage} dan model BERT yang hanya berisi bahasa Melayu. Bahasa Melayu dipilih karena kedekatan \textit{grammar} dan konteks dengan susunan kata berbahasa Indonesia. Untuk model yang mendukung \textit{multilanguage} kami menggunakan varian \textit{official} yang dibuat oleh Google, yaitu model \texttt{bert-multilingual-uncased} yang sudah mendukung 104 bahasa yang berasal dari Wikipedia. Sedangkan untuk model dengan bahasa Melayu, kami menggunakan model \texttt{bert-base-bahasa-standard-cased} yang sudah dilatih di beberapa sumber seperti Wikipedia, Wattpad, Berita, Sosial Media dan masih banyak lagi \cite{Malaya}
+\begin{enumerate}[nolistsep]
+    \item Model khusus bahasa Melayu, diwakili oleh : \textit{bert-base-bahasa-standard-case}
+    \item Model dengan multibahasa, diwakili oleh : \textit{bert-multilingual-uncased}
+    \item Model khusus bahasa Indonesia, \textit{indobert-base-p1}
+    \item Model khusus bahasa Indonesia, \textit{bert-base-indonesian-522M}
+    \item Model khusus bahasa Indonesia, \textit{bert-base-indonesian-1.5G}
+\end{enumerate}
 
 \begin{table}
     \centering
@@ -184,61 +188,41 @@ Selain model BERT yang hanya berisi bahasa Indonesia, kami juga melakukan percob
     \end{tabular}
 \end{table}
 
-Untuk melakukan \textit{training}, sebelumnya kami mengatur konfigurasi yang akan digunakan oleh model BERT yang sudah disiapkan. Terdapat beberapa perbedaan pada konfigurasi seperti jumlah \textit{epoch} dan jumlah \textit{dropout}. Hal ini karena pada beberapa model, apabila menggunakan konfigurasi \textit{default} akan terjadi \textit{overfit} yang cukup parah.
+Untuk melakukan \textit{training}, sebelumnya kami mengatur konfigurasi yang akan digunakan oleh model BERT yang sudah disiapkan. Terdapat beberapa perbedaan pada konfigurasi seperti jumlah \textit{epoch} dan jumlah \textit{dropout}. Hal ini agar membuat model dapat memiliki konfigurasi yang lebih optimal dan tidak mengalami \textit{overfit} maupun \textit{underfit}.
+
+\subsection{Pengujian pada model \textit{bert-base-bahasa-standard-case}}
+
+Model ini adalah model yang di-\textit{pretrained} menggunakan bahasa Melayu saja dengan mengambil berbagai sumber dataset seperti media sosial, Wikipedia, sampai Wattpad \cite{Malaya}. Model ini dilatih oleh huzeinzol05 dan menurut pembuat model, model ini seharusnya dapat digunakan baik untuk tugas - tugas berbahasa Melayu maupun tugas - tugas berbahasa Indonesia dikarenakan kesamaan pada tata bahasa dan arti suatu kata.
 
 \begin{figure}[h]
-    \centering
-    \subcaptionbox{\textit{Loss} pada model BERT Bahasa Melayu}{
-        \includegraphics[width=.47\textwidth]{gambar/loss_bert_bahasa.png}
-    }
-    \subcaptionbox{\textit{Loss} pada model BERT \textit{Multilingual}}{
-        \includegraphics[width=.47\textwidth]{gambar/loss_bert_multilingual.png}
-    }
-    \subcaptionbox{\textit{Loss} pada model BERT IndoBERT}{
-        \includegraphics[width=.47\textwidth]{gambar/loss_concat_awal.png}
-    }
-    \subcaptionbox{\textit{Loss} pada model BERT Cahya 1.5GB}{
-        \includegraphics[width=.47\textwidth]{gambar/loss_cahya_bert_1,5.png}
-    }
-    \subcaptionbox{\textit{Loss} pada model BERT Cahya 522MB}{
-        \includegraphics[width=.47\textwidth]{gambar/loss_cahya_bert_522.png}
-    }
-    \caption{\textit{Loss} pada Model BERT yang digunakan}
-    \label{fig:loss_bert_model}
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_bert_bahasa.png}
+        \caption{Nilai \textit{Loss} saat Pengujian dengan model \textit{bert-bahasa}}
+        \label{fig: loss_bert_bahasa}
+    \end{center}
 \end{figure}
 
-Dapat dilihat pada gambar \ref{fig:loss_bert_model}, bahwa sebagian besar model BERT memiliki nilai \textit{loss} yang kurang lebih sama. Namun, apabila merujuk pada grafik \textit{loss} yang paling baik dimiliki oleh model \texttt{bert-base-bahasa-standard-case} yang merupakan model yang berisi bahasa Melayu, hal yang sama juga terjadi pada model \texttt{bert-base-multilingual-uncased} yang merupakan model dengan kemampuan \textit{multilanguage}. Sedangkan pada model - model lainnya, sudah mulai terlihat kenaikan pada \textit{validation loss} yang menunjukkan bahwa model sudah mulai mengalami \textit{overfit}.
-
-\begin{figure}[h]
+\begin{table}
+    \caption{Hasil Pengujian dengan model \textit{bert-bahasa}}
+    \label{tab: loss_bahasa}
     \centering
-    \subcaptionbox{\textit{Confusion Matrix} pada model BERT Bahasa Melayu}{
-        \includegraphics[width=.8\textwidth]{gambar/csf_mat_bert_bahasa.png}
-    }
-    \subcaptionbox{\textit{Confusion Matrix} pada model BERT \textit{Multilingual}}{
-        \includegraphics[width=.8\textwidth]{gambar/csf_mat_multilingual.png}
-    }
-    \caption{\textit{Confusion Matrix} pada Model BERT yang digunakan (bagian 1)}
-    \label{fig:cfs_bert_model}
-\end{figure}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}} & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}} & TP             & 124  \\ \cline{2-3}
+                                                   & FP             & 28   \\ \cline{2-3}
+                                                   & TN             & 125  \\ \cline{2-3}
+                                                   & FN             & 15   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}           & Hoax           & 89\% \\ \cline{2-3}
+                                                   & Valid          & 82\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}        & Hoax           & 82\% \\ \cline{2-3}
+                                                   & Valid          & 89\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}         & Hoax           & 85\% \\ \cline{2-3}
+                                                   & Valid          & 85\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}    & 85\%                  \\ \hline
+    \end{tabular}
+\end{table}
 
-\begin{figure}[h]
-    \centering
-    \subcaptionbox{\textit{Confusion Matrix} pada model BERT IndoBERT}{
-        \includegraphics[width=.6\textwidth]{gambar/cfs_mat_concat_awal.png}
-    }
-    \subcaptionbox{\textit{Confusion Matrix} pada model BERT Cahya 1.5GB}{
-        \includegraphics[width=.6\textwidth]{gambar/cfs_matrix_cahya_bert_1,5.png}
-    }
-    \caption{\textit{Confusion Matrix} pada Model BERT yang digunakan (bagian 2)}
-    \label{fig:cfs_bert_model_2}
-\end{figure}
+Pada gambar \ref{fig:loss_bert_bahasa} terlihat bahwa model memiliki nilai \textit{validation loss} dan \textit{training loss} yang sedikit \textit{underfitting}. Namun, apabila diuji dengan menambahkan epoch, hasil pengujian tersebut menghasilkan model yang \textit{overfitting} sehingga tidak kami gunakan sebagai nilai pembanding. Berdasarkan tabel \ref{tab: loss_bahasa}, terlihat bahwa \textit{recall} lebih tinggi dibanding \textit{precision} saat mendeteksi berita hoaks, sehingga dapat disimpulkan bahwa model mengalami
 
 
-\begin{figure}[h]
-    \centering
-    \subcaptionbox{\textit{Confusion Matrix} pada model BERT Cahya 522M}{
-        \includegraphics[width=.6\textwidth]{gambar/cfs_matrix_cahya_bert_522.png}
-    }
-    \caption{\textit{Confusion Matrix} pada Model BERT yang digunakan (bagian 3)}
-    \label{fig:cfs_bert_model_3}
-\end{figure}
