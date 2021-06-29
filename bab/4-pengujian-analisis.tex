@@ -13,7 +13,7 @@ Pada penelitian ini dipaparkan hasil pengujian serta analisis yang dilakukan ses
 
 Pada pengujian, masing - masing model menggunakan Google Collab dengan spesifikasi \textit{hardware} seperti yang dilampirkan pada tabel \ref{tab:specs_collab}
 
-\begin{table}
+\begin{table}[h]
     \caption{spesifikasi PC yang digunakan}
     \label{tab:specs_collab}
     \centering
@@ -42,7 +42,7 @@ Pengujian performa berdasar pada penggalan kata yang diambil ini bertujuan untuk
 
 Dari total data yang berjumlah 1621 data, akan diambil 18\% nya sebagai dataset pengujian, sehingga berjumlah 292 dataset sebagai pengujian. Parameter pada pengujian untuk \textit{training} di atur agar sama untuk setiap pengujian, \textit{epoch} sebesar 7, \textit{leearning rate} sebesar 2e-5, dan \textit{epsilon} sebesar 1e-8, hal yang sama juga dilakukan pada model, pengujian ini menggunakan model BERT yang telah di-\textit{pre-trained} oleh Indobert. Untuk lebih jelasnya, silahkan lihat Tabel \ref{tab: truncate_param} yang berisi rincian parameter dan model yang digunakan untuk proses \textit{training}.
 
-\begin{table}
+\begin{table}[h]
     \caption{Konfigurasi Parameter Untuk Pengujian berdasarkan Pemotongan Kata}
     \label{tab: truncate_param}
     \centering
@@ -63,7 +63,7 @@ Terdapat beberapa ciri - ciri yang terdapat pada kebanyakan teks berita berbahas
 
 Seperti bisa dilihat pada tabel \ref{tab: const_awal}, dengan memotong teks berita pada bagian awal, didapatkan tingkat akurasi sebesar 89\% dengan nilai \textit{recall, precision, f1-score} kurang lebih sama. Selain itu, dapat dilihat juga pada kolom \textit{confusion matrix}, model yang sudah dibuat memiliki nilai FP dan FN yang sudah cukup sedikit. Namun, apabila melihat pada gambar \ref{fig: loss_const_awal}, terlihat bahwa model agak sedikit \textit{overfit}, sehingga terdapat kemungkinan akan memiliki tingkat akurasi yang lebih rendah pada saat implementasi.
 
-\begin{table}
+\begin{table}[h]
     \caption{Hasil Pengujian dengan Mengambil Awal Teks}
     \label{tab: const_awal}
     \centering
@@ -99,7 +99,7 @@ Mirip seperti pengujian dengan mengambil bagian awal teks, terdapat ciri - ciri 
 
 Dapat dilihat pada tabel \ref{tab: const_akhir}, model dengan cara memotong teks seperti ini berhasil mendapatkan tingkat akurasi sebesar 86\%. Namun, apabila melihat nilai \textit{recall} dan \textit{precision}-nya, ada indikasi bias dimana model lebih memiliki kecenderungan untuk mengeluarkan hasil hoaks bahkan pada berita valid sekalipun. Sedangkan, apabila melihat pada gambar \ref{fig: loss_const_akhir}, dapat dilihat bahwa baik nilai \textit{train loss} dan \textit{validation loss} sudah berada di titik optimal dan apabila dilakukan \textit{training} tambahan, akan membuat model \textit{overfit}.
 
-\begin{table}
+\begin{table}[h]
     \caption{Hasil Pengujian dengan Mengambil Akhir Teks}
     \label{tab: const_akhir}
     \centering
@@ -132,7 +132,7 @@ Dapat dilihat pada tabel \ref{tab: const_akhir}, model dengan cara memotong teks
 
 Pengujian ini berdasarkan pada penelitian Chi Sun et al. yang menemukan bahwa dengan strategi pengambilan teks yang dibagi dua seperti ini akan dapat memberikan nilai akurasi yang lebih baik apabila dibandingkan dengan mengambil hanya di bagian awal maupun di bagian akhir saja \cite{sun2019fine}. Alasan dari penyebab lebih tingginya akurasi adalah karena dengan mengambil sebagian di awal maka sebagian dari ringkasan berita akan didapatkan, sedangkan mengambil sebagian di akhir adalah agar kesimpulan berita juga masuk ke dalam proses \textit{training}. Namun, pengujian tersebut dilakukan pada dataset teks berita berbahasa Inggris sehingga masih harus dilakukan pengujian lagi pada dataset teks berita berbahasa Indonesia.
 
-\begin{table}[]
+\begin{table}[h]
     \caption{Hasil Pengujian dengan Mengambil Tengah Teks}
     \label{tab: const_tengah}
     \centering
@@ -203,7 +203,7 @@ Model yang diberi nama \textit{bert-base-bahasa-standard-case} adalah model yang
     \end{center}
 \end{figure}
 
-\begin{table}
+\begin{table}[h]
     \caption{Hasil Pengujian dengan model \textit{bert-bahasa}}
     \label{tab: loss_bahasa}
     \centering
@@ -381,11 +381,97 @@ BERT adalah model yang berdasarkan pada metode pendekatan \textit{transformer}, 
     \item GPT-2
 \end{enumerate}
 
-Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar performa dari setiap cara pendekatan model, ketiga metode yang diuji menggunakan model yang dibuat oleh orang yang sama, yaitu Cahya Wirawan dan di-\textit{pretrained} dengan sumber dan jumlah dataset yang sama.
+Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar performa dari setiap cara pendekatan model, ketiga metode yang diuji menggunakan model yang dibuat oleh orang yang sama, yaitu Cahya Wirawan dan di-\textit{pretrained} dengan sumber dan jumlah dataset yang sama. Tabel \ref{tab: transformer_config} merupakan konfigurasi yang digunakan pada waktu melakukan \textit{training} pada pengujian ini.
+
+\begin{table}[h]
+    \centering
+    \caption{Konfigurasi yang dipakai oleh model \textit{transformer} yang digunakan}
+    \label{tab: transformer_config}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Model} & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
+        Roberta        & 3                       & 0.2                       & 2e-6                             \\ \hline
+        GPT-2          & 2                       & -                         & 2e-5                             \\ \hline
+        BERT           & 3                       & 0.1                       & 2e-5                             \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Pengujian dengan menggunakan Roberta}
+
+Roberta merupakan pengembangan lebih lanjut dari BERT yang dibuat oleh tim Facebook AI. Salah satu pengembangan yang dilakukan adalah merubah bagaimana teks di \textit{mask} pada saat melakukan \textit{pretrain}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_roberta522.png}
+        \caption{Nilai \textit{Loss} pada model Roberta}
+        \label{fig: loss_roberta}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian pada model Roberta}
+    \label{tab: loss_roberta}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 127  \\ \cline{2-3}
+                                                                & FP             & 12   \\ \cline{2-3}
+                                                                & TN             & 111  \\ \cline{2-3}
+                                                                & FN             & 42   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 90\% \\ \cline{2-3}
+                                                                & Valid          & 75\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 73\% \\ \cline{2-3}
+                                                                & Valid          & 91\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 80\% \\ \cline{2-3}
+                                                                & Valid          & 82\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 82\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:12                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Dikarenakan model Roberta ini adalah model hasil pengembangan lebih lanjut dari BERT, terlihat dari grafik \ref{fig: loss_roberta} bahwa nilai \textit{loss} dari model ini sangat bagus. Sedangkan pada tabel \ref{tab: loss_roberta}, terlihat bahwa nilai akurasinya hanya terpaut 2\% dari pada BERT.
+
+\subsection{Pengujian dengan menggunakan GPT-2}
+
+Sebagai pembanding lebih lanjut, kami menggunakan GPT-2. Sebuah model yang cukup terkenal karena kemampuan generator teks-nya yang menghasilkan teks yang bagus dan masih dapat dimengerti oleh manusia.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_gpt.png}
+        \caption{Nilai \textit{Loss} pada model GPT-2}
+        \label{fig: loss_gpt}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian pada model GPT-2}
+    \label{tab: loss_gpt}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 118  \\ \cline{2-3}
+                                                                & FP             & 21   \\ \cline{2-3}
+                                                                & TN             & 124  \\ \cline{2-3}
+                                                                & FN             & 29   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 86\% \\ \cline{2-3}
+                                                                & Valid          & 80\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 81\% \\ \cline{2-3}
+                                                                & Valid          & 85\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 83\% \\ \cline{2-3}
+                                                                & Valid          & 83\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 83\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:15                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Model menggunakan nilai \textit{epoch} yang paling sedikit apabila dibandingkan model - model yang lain. Hal ini karena tidak adanya \textit{node dropout} pada \textit{head}. Walaupun begitu,
+
 
 \section{Pengujian Performa berdasarkan pada pendekatan cara \textit{training}}
 
-Selain membandingkan antara model - model yang sudah dibuat sebelumnya oleh beberapa orang di internet, kami juga mencoba untuk memperbaiki model kami sehingga menjadi lebih optimal dibandingkan sebelumnya. Untuk pengujian ini, kami menggunakan model \textit{indober-base-p1}  karena memiliki tingkat akurasi yang paling tinggi pada pengujian - pengujian sebelumnya. Sebagai \textit{baseline} atau dasar, kami menggunakan nilai yang didapat pada pengujian sebelumnya. Untuk pengujian ini kami mencoba beberapa hal dengan rincian dapat dilihat pada tabel \ref{tab: training_config}
+Selain membandingkan antara model - model yang sudah dibuat sebelumnya oleh beberapa orang di internet, kami juga mencoba untuk memperbaiki model kami sehingga menjadi lebih optimal dibandingkan sebelumnya. Untuk pengujian ini, kami menggunakan model \textit{indobert-base-p1}  karena memiliki tingkat akurasi yang paling tinggi pada pengujian - pengujian sebelumnya. Sebagai \textit{baseline} atau dasar, kami menggunakan nilai yang didapat pada pengujian sebelumnya. Untuk pengujian ini kami mencoba beberapa hal dengan rincian dapat dilihat pada tabel \ref{tab: training_config}
 
 \begin{table}[h]
     \centering
@@ -393,10 +479,10 @@ Selain membandingkan antara model - model yang sudah dibuat sebelumnya oleh bebe
     \label{tab: training_config}
     \begin{tabular}{|l|l|l|l|}
         \hline
-        \textbf{pendekatan} & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
-        \textit{baseline}   & 3                       & 0.1                       & 2e-5                             \\ \hline
-        parameter freeze    & 50                      & 0.1                       & 2e-5                             \\ \hline
-        dropout             & 4                       & 0.1                       & 2e-5                             \\ \hline
+        \textbf{pendekatan}       & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
+        \textit{baseline}         & 3                       & 0.1                       & 2e-5                             \\ \hline
+        parameter \textit{freeze} & 50                      & 0.1                       & 2e-5                             \\ \hline
+        \textit{dropout}          & 4                       & 0.1                       & 2e-5                             \\ \hline
     \end{tabular}
 \end{table}
 
@@ -443,7 +529,7 @@ Pada pengujian ini kami mencoba untuk tidak merubah \textit{weight} yang sudah d
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width= 0.9\linewidth]{gambar/loss_freeze_new.png}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_freeze_50.png}
         \caption{Nilai \textit{Loss} saat melakukan \textit{training} dengan parameter \textit{freeze}}
         \label{fig: loss_freeze}
     \end{center}
@@ -471,4 +557,4 @@ Pada pengujian ini kami mencoba untuk tidak merubah \textit{weight} yang sudah d
     \end{tabular}
 \end{table}
 
-Berdasarkan pada tabel \ref{tab: loss_freeze}, dapat dilihat bahwa waktu yang dibutuhkan model untuk melakukan \textit{training} menjadi jauh lebih singkat dan dengan tingkat akurasi tidak terpaut jauh apabila dibandingkan tingkat akurasi \textit{baseline}.
+Berdasarkan pada tabel \ref{tab: loss_freeze}, dapat dilihat bahwa waktu yang dibutuhkan model untuk melakukan \textit{training} menjadi jauh lebih singkat dan dengan tingkat akurasi tidak terpaut jauh apabila dibandingkan tingkat akurasi \textit{baseline}. Sayangnya, apabila melihat gambar \ref{fig: loss_freeze}, terlihat bahwa parameter yang di-\textit{freeze} tersebut membuat model tidak dapat mencapai tingkat akurasi optimal bahkan setelah 50 epoch walaupun tampak grafik \textit{loss} model sangat bagus.
