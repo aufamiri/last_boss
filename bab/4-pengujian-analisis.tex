@@ -390,26 +390,26 @@ Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar pe
     \begin{tabular}{|l|l|l|l|}
         \hline
         \textbf{Model} & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
-        Roberta        & 3                       & 0.2                       & 2e-6                             \\ \hline
+        Roberta        & 3                       & 0.1                       & 2e-5                             \\ \hline
         GPT-2          & 2                       & -                         & 2e-5                             \\ \hline
         BERT           & 3                       & 0.1                       & 2e-5                             \\ \hline
     \end{tabular}
 \end{table}
 
-\subsection{Pengujian dengan menggunakan Roberta}
+\subsection{Pengujian dengan menggunakan ROBERTA}
 
-Roberta merupakan pengembangan lebih lanjut dari BERT yang dibuat oleh tim Facebook AI. Salah satu pengembangan yang dilakukan adalah merubah bagaimana teks di \textit{mask} pada saat melakukan \textit{pretrain}.
+ROBERTA merupakan pengembangan lebih lanjut dari BERT yang dibuat oleh tim Facebook AI. Salah satu pengembangan yang dilakukan adalah merubah bagaimana teks di \textit{mask} pada saat melakukan \textit{pretrain}.
 
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width= 0.9\linewidth]{gambar/loss_roberta522.png}
-        \caption{Nilai \textit{Loss} pada model Roberta}
+        \caption{Nilai \textit{Loss} pada model ROBERTA}
         \label{fig: loss_roberta}
     \end{center}
 \end{figure}
 
 \begin{table}[h]
-    \caption{Hasil Pengujian pada model Roberta}
+    \caption{Hasil Pengujian pada model ROBERTA}
     \label{tab: loss_roberta}
     \centering
     \begin{tabular}{|l|l|l|}
@@ -430,7 +430,7 @@ Roberta merupakan pengembangan lebih lanjut dari BERT yang dibuat oleh tim Faceb
     \end{tabular}
 \end{table}
 
-Dikarenakan model Roberta ini adalah model hasil pengembangan lebih lanjut dari BERT, terlihat dari grafik \ref{fig: loss_roberta} bahwa nilai \textit{loss} dari model ini sangat bagus. Sedangkan pada tabel \ref{tab: loss_roberta}, terlihat bahwa nilai akurasinya hanya terpaut 2\% dari pada BERT.
+Dikarenakan model ROBERTA ini adalah model hasil pengembangan lebih lanjut dari BERT, terlihat dari grafik \ref{fig: loss_roberta} bahwa nilai \textit{loss} dari model ini sangat bagus. Sedangkan pada tabel \ref{tab: loss_roberta}, terlihat bahwa nilai akurasinya hanya terpaut 1\% dari pada BERT.
 
 \subsection{Pengujian dengan menggunakan GPT-2}
 
@@ -466,7 +466,11 @@ Sebagai pembanding lebih lanjut, kami menggunakan GPT-2. Sebuah model yang cukup
     \end{tabular}
 \end{table}
 
-Model menggunakan nilai \textit{epoch} yang paling sedikit apabila dibandingkan model - model yang lain. Hal ini karena tidak adanya \textit{node dropout} pada \textit{head}. Walaupun begitu,
+Model menggunakan nilai \textit{epoch} yang paling sedikit apabila dibandingkan model - model yang lain. Hal ini karena tidak adanya \textit{node dropout} pada \textit{head}. Walaupun begitu, seperti bisa dilihat pada grafik \ref{fig: loss_gpt}, nilai \textit{loss}-nya juga cukup bagus. Namun, apabila merubah nilai \textit{epoch} menjadi 3, akan langsung terjadi \textit{overfit}. Tingkat akurasi yang dijelaskan pada tabel \ref{tab: loss_gpt} juga lebih baik dari ROBERTA, namun masih kalah apabila dibandingkan dengan BERT.
+
+\subsection{Pengujian dengan menggunakan BERT}
+
+Model BERT yang digunakan disini sama seperti pada model yang digunakan pada pengujian berdasarkan model BERT yang digunakan.
 
 
 \section{Pengujian Performa berdasarkan pada pendekatan cara \textit{training}}
