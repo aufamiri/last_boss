@@ -470,8 +470,39 @@ Model menggunakan nilai \textit{epoch} yang paling sedikit apabila dibandingkan 
 
 \subsection{Pengujian dengan menggunakan BERT}
 
-Model BERT yang digunakan disini sama seperti pada model yang digunakan pada pengujian berdasarkan model BERT yang digunakan.
+Model BERT yang digunakan disini sama seperti pada model yang digunakan pada pengujian berdasarkan model BERT yang digunakan. Berhubung model yang digunakan sama, maka tidak banyak terjadi perbedaan.
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_cahya_bert_522.png}
+        \caption{Nilai \textit{Loss} pada model BERT}
+        \label{fig: loss_bert}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian pada model BERT}
+    \label{tab: loss_bert}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 122  \\ \cline{2-3}
+                                                                & FP             & 17   \\ \cline{2-3}
+                                                                & TN             & 122  \\ \cline{2-3}
+                                                                & FN             & 31   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 88\% \\ \cline{2-3}
+                                                                & Valid          & 80\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 80\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 84\% \\ \cline{2-3}
+                                                                & Valid          & 84\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 84\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 02:03                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Apabila dibandingkan dengan model - model transformer yang sudah diuji sebelumnya, model BERT ini memiliki tingkat performa yang lebih bagus, tampak pada tabel \ref{tab: loss_bert}. Namun, apabila melihat pada gambar \ref{fig: loss_bert}, tampak model BERT ini memiliki nilai \textit{loss} yang lebih jelek dan mendekati kondisi \textit{overfit}.
 
 \section{Pengujian Performa berdasarkan pada pendekatan cara \textit{training}}
 
@@ -486,7 +517,7 @@ Selain membandingkan antara model - model yang sudah dibuat sebelumnya oleh bebe
         \textbf{pendekatan}       & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
         \textit{baseline}         & 3                       & 0.1                       & 2e-5                             \\ \hline
         parameter \textit{freeze} & 50                      & 0.1                       & 2e-5                             \\ \hline
-        \textit{dropout}          & 4                       & 0.1                       & 2e-5                             \\ \hline
+        \textit{dropout}          & 3                       & 0.2                       & 2e-5                             \\ \hline
     \end{tabular}
 \end{table}
 
@@ -497,7 +528,7 @@ Diperlukan adanya nilai \textit{baseline} yang digunakan sebagai acuan akan baga
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width= 0.9\linewidth]{gambar/loss_concat_awal.png}
-        \caption{Nilai \textit{Loss} Acuan}
+        \caption{Nilai \textit{loss} Acuan}
         \label{fig: loss_baseline}
     \end{center}
 \end{figure}
@@ -534,13 +565,13 @@ Pada pengujian ini kami mencoba untuk tidak merubah \textit{weight} yang sudah d
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width= 0.9\linewidth]{gambar/loss_freeze_50.png}
-        \caption{Nilai \textit{Loss} saat melakukan \textit{training} dengan parameter \textit{freeze}}
+        \caption{Nilai \textit{loss} saat melakukan \textit{training} dengan parameter \textit{freeze}}
         \label{fig: loss_freeze}
     \end{center}
 \end{figure}
 
 \begin{table}[h]
-    \caption{Hasil Pengujian saat \textit{training} dengan parameter \textit{freeze}}
+    \caption{Hasil pengujian saat \textit{training} dengan parameter \textit{freeze}}
     \label{tab: loss_freeze}
     \centering
     \begin{tabular}{|l|l|l|}
@@ -562,3 +593,39 @@ Pada pengujian ini kami mencoba untuk tidak merubah \textit{weight} yang sudah d
 \end{table}
 
 Berdasarkan pada tabel \ref{tab: loss_freeze}, dapat dilihat bahwa waktu yang dibutuhkan model untuk melakukan \textit{training} menjadi jauh lebih singkat dan dengan tingkat akurasi tidak terpaut jauh apabila dibandingkan tingkat akurasi \textit{baseline}. Sayangnya, apabila melihat gambar \ref{fig: loss_freeze}, terlihat bahwa parameter yang di-\textit{freeze} tersebut membuat model tidak dapat mencapai tingkat akurasi optimal bahkan setelah 50 epoch walaupun tampak grafik \textit{loss} model sangat bagus.
+
+\subsection{Parameter \textit{Dropout}}
+
+Pada pengujian ini kami ingin melihat pengaruh perubahan parameter \textit{dropout} pada performa suatu model. Perubahan nilai \textit{dropout} ini dapat digunakan agar model tidak mengalami \textit{overfit} dan menjadi lebih umum untuk digunakan.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_dropout_new.png}
+        \caption{Nilai \textit{loss} saat melakukan \textit{training} dengan merubah \textit{dropout}}
+        \label{fig: loss_dropout}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil pengujian saat \textit{training} dengan merubah \textit{dropout}}
+    \label{tab: loss_dropout}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 111  \\ \cline{2-3}
+                                                                & FP             & 28   \\ \cline{2-3}
+                                                                & TN             & 134  \\ \cline{2-3}
+                                                                & FN             & 19   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 83\% \\ \cline{2-3}
+                                                                & Valid          & 85\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 88\% \\ \cline{2-3}
+                                                                & Valid          & 80\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 85\% \\ \cline{2-3}
+                                                                & Valid          & 83\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 84\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 03:44                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Apabila melihat pada tabel \ref{tab: loss_dropout}, dapat dilihat bahwa akurasi model menjadi lebih buruk apabila dibandingkan dengan pengujian acuan. Namun, di saat bersamaan, nilai \textit{loss} yang terdapat pada gambar \ref{fig: loss_dropout} lebih bagus apabila dibandingkan dengan hasil pengujian acuan.
