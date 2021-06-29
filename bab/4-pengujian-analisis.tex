@@ -7,6 +7,7 @@ Pada penelitian ini dipaparkan hasil pengujian serta analisis yang dilakukan ses
 \begin{enumerate}[nolistsep]
     \item Pengujian Performa berdasar pada Penggalan Kata yang Diambil
     \item Pengujian Performa berdasarkan model BERT yang digunakan
+    \item Pengujian Performa berdasarkan pada metode \textit{transformer}  yang digunakan.
     \item Pengujian Performa berdasarkan Pendekatan Cara \textit{Training}.
 \end{enumerate}
 
@@ -332,7 +333,7 @@ Sama seperti model sebelumnya, model ini juga dibuat oleh Cahya Wirawan. Yang me
     \end{tabular}
 \end{table}
 
-Hampir mirip seperti pada model sebelumnya, pada tabel \ref{tab: loss_cahya1.5} terlihat bahwa model ini agak kesulitan untuk mendeteksi berita valid, sehingga nilai FP-nya juga cukup tinggi. Namun, apabila dibandingkan
+Hampir mirip seperti pada model sebelumnya, pada tabel \ref{tab: loss_cahya1.5} terlihat bahwa model ini agak kesulitan untuk mendeteksi berita valid, sehingga nilai FP-nya juga cukup tinggi. Namun, apabila dibandingkan dengan model sebelumnya yang di-\textit{pretrained} hanya dengan 522M data, terlihat peningkatan tingkat akurasi. Berdasarkan pada gambar \ref{fig: loss_cahya1.5}, nilai \textit{validation loss} yang lebih rendah apabila dibandingkan dengan model sebelumnya. Walaupun juga terlihat kemungkinan adanya \textit{overfit}.
 
 \subsection{Pengujian pada model \textit{indobert-base-p1}}
 
@@ -369,5 +370,9 @@ Model BERT ini adalah salah satu dari 3 model khusus berbahasa Indonesia yang di
 \end{table}
 
 Sebagai model yang dilatih pada dataset khusus berbahasa Indonesia yang paling banyak, model ini memiliki tingkat akurasi yang paling tinggi apabila dibanding model - model yang lain. Gambar \ref{fig: loss_bert_indobert} menunjukkan grafik \textit{loss} dari model ini, terlihat pada grafik tersebut, nilai \textit{validation loss} nya sudah lebih tinggi dari \textit{training loss}-nya sehingga model sudah sedikit \textit{overfit}. Berdasarkan pada tabel \ref{tab: loss_indobert}, dapat dilihat bahwa model ini memiliki tingkat akurasi yang paling tinggi apabila dibandingkan dengan model - model yang lain.
+
+\section{Pengujian Performa berdasarkan pada metode \textit{transformer} yang digunakan}
+
+BERT adalah model yang berdasarkan pada metode pendekatan \textit{transformer}, yaitu pendekatan yang hanya menggunakan \textit{attention head} saja dibandingkan dengan pendekatan sebelumnya yang menggabungkan \textit{attention head} dengan \textit{Recurrent Neural Network}(RNN). Terdapat beberapa metode lain yang merupakan turunan dari metode \textit{transformer} ini.
 
 
