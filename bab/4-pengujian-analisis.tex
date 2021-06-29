@@ -373,6 +373,66 @@ Sebagai model yang dilatih pada dataset khusus berbahasa Indonesia yang paling b
 
 \section{Pengujian Performa berdasarkan pada metode \textit{transformer} yang digunakan}
 
-BERT adalah model yang berdasarkan pada metode pendekatan \textit{transformer}, yaitu pendekatan yang hanya menggunakan \textit{attention head} saja dibandingkan dengan pendekatan sebelumnya yang menggabungkan \textit{attention head} dengan \textit{Recurrent Neural Network}(RNN). Terdapat beberapa metode lain yang merupakan turunan dari metode \textit{transformer} ini.
+BERT adalah model yang berdasarkan pada metode pendekatan \textit{transformer}, yaitu pendekatan yang hanya menggunakan \textit{attention head} saja dibandingkan dengan pengembangan sebelumnya yang menggunakan LSTM + \textit{attention head}. Terdapat beberapa metode lain yang merupakan turunan dari metode \textit{transformer} ini, seperti misalnya BERT yang digunakan dalam penelitian ini, kemudian terdapat GPT-2, XLMNet, Roberta dan masih banyak lagi. Maka dari itu, kami menguji bagaimana performa model BERT yang digunakan dengan beberapa metode pendekatan transformer lain tersebut. Beberapa model yang kami gunakan dalam penelitian ini adalah :
+
+\begin{enumerate}[nolistsep]
+    \item Roberta
+    \item BERT
+    \item GPT-2
+\end{enumerate}
+
+Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar performa dari setiap cara pendekatan model, ketiga metode yang diuji menggunakan model yang dibuat oleh orang yang sama, yaitu Cahya Wirawan dan di-\textit{pretrained} dengan sumber dan jumlah dataset yang sama.
+
+\section{Pengujian Performa berdasarkan pada pendekatan cara \textit{training}}
+
+Selain membandingkan antara model - model yang sudah dibuat sebelumnya oleh beberapa orang di internet, kami juga mencoba untuk memperbaiki model kami sehingga menjadi lebih optimal dibandingkan sebelumnya. Untuk pengujian ini, kami menggunakan model \textit{indober-base-p1}  karena memiliki tingkat akurasi yang paling tinggi pada pengujian - pengujian sebelumnya. Sebagai \textit{baseline} atau dasar, kami menggunakan nilai yang didapat pada pengujian sebelumnya. Untuk pengujian ini kami mencoba beberapa hal dengan rincian dapat dilihat pada tabel \ref{tab: training_config}
+
+\begin{table}[h]
+    \centering
+    \caption{Konfigurasi yang digunakan pada saat melakukan pendekatan training}
+    \label{tab: training_config}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{pendekatan} & \textit{\textbf{epoch}} & \textit{\textbf{dropout}} & \textit{\textbf{learning rates}} \\ \hline
+        \textit{baseline}   & 3                       & 0.1                       & 2e-5                             \\ \hline
+        parameter freeze    & 30                      & 0.1                       & 2e-5                             \\ \hline
+        dropout             & 4                       & 0.1                       & 2e-5                             \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Parameter \textit{Freeze}}
+
+Pada pengujian ini kami mencoba untuk tidak merubah \textit{weight} yang sudah didapatkan pada proses \textit{pre-trained} pada waktu model dibuat. Sehingga, \textit{weight} yang kami rubah adalah \textit{weight} pada bagian \textit{classifier}-nya saja.
 
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= 0.9\linewidth]{gambar/loss_freeze_new.png}
+        \caption{Nilai \textit{Loss} saat melakukan \textit{training} dengan parameter \textit{freeze}}
+        \label{fig: loss_freeze}
+    \end{center}
+\end{figure}
+
+\begin{table}[h]
+    \caption{Hasil Pengujian saat \textit{training} dengan parameter \textit{freeze}}
+    \label{tab: loss_freeze}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{2}{|l|}{\textbf{Hasil Model}}              & \textbf{Nilai}        \\ \hline
+        \multirow{4}{*}{\textit{Confusion Matrix}}              & TP             & 123  \\ \cline{2-3}
+                                                                & FP             & 35   \\ \cline{2-3}
+                                                                & TN             & 118  \\ \cline{2-3}
+                                                                & FN             & 16   \\ \hline
+        \multirow{2}{*}{\textit{Recall}}                        & Hoax           & 88\% \\ \cline{2-3}
+                                                                & Valid          & 78\% \\ \hline
+        \multirow{2}{*}{\textit{Precision}}                     & Hoax           & 77\% \\ \cline{2-3}
+                                                                & Valid          & 88\% \\ \hline
+        \multirow{2}{*}{\textit{F1-Score}}                      & Hoax           & 82\% \\ \cline{2-3}
+                                                                & Valid          & 83\% \\ \hline
+        \multicolumn{2}{|l|}{\textit{Accuracy}}                 & 83\%                  \\ \hline
+        \multicolumn{2}{|l|}{\textit{Avg. Training Time (mnt)}} & 01:23                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Berdasarkan pada tabel \ref{tab: loss_freeze}, dapat dilihat bahwa waktu yang dibutuhkan model untuk melakukan \textit{training} menjadi jauh lebih singkat
