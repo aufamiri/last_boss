@@ -10,25 +10,24 @@ Dari keseluruhan penelitian yang telah dilakukan, maka dapat dimabil beberapa ke
 
 \begin{enumerate}[nolistsep]
 
-  \item Pembuatan \lipsum[2][1-3]
-
-  \item \lipsum[2][4-6]
-
-  \item \lipsum[2][7-10]
+  \item Semakin banyak dataset yang digunakan pada waktu \textit{pretrain} BERT, maka semakin akurat juga suatu model tersebut, hal ini terbukti oleh model \textit{indobert-base-p1} yang dilatih dengan 23 GB lebih data.
+  \item Metode pemenggalan kata dengan hanya mengambil bagian awal dari suatu teks berhasil memperoleh tingkat akurasi yang lebih baik apabila dibandingkan dengan metode - metode pemenggalan teks lainnya.
+  \item Penggunaan model BERT yang spesifik untuk bahasa Indonesia secara umum memiliki nilai akurasi yang lebih baik apabila dibandingkan dengan model multibahasa maupun bahasa Melayu dalam mendeteksi berita palsu berbahasa Indonesia. Bahkan nilai akurasi yang lebih tinggi juga didapatkan dengan model yang di-\textit{pretrain} dengan data yang lebih sedikit.
+  \item Walaupun sudah terdapat beberapa model lain yang merupakan turunan dari BERT itu sendiri, namun BERT masih merupakan model yang cukup bagus untuk klasifikasi teks.
+  \item BERT adalah model yang sangat mudah terjadi \textit{overfit}, sehingga pengaturan parameter seperti dengan \textit{dropout} dan parameter \textit{freeze} akan membuat model lebih \textit{general} namun memiliki tingkat akurasi beberapa persen lebih rendah.
 
 \end{enumerate}
 
 \section{Saran}
 \label{chap:saran}
 
-Untuk pengembangan lebih lanjut pada \lipsum[1][1-3] antara lain:
+Adapun dari penelitian ini terdapat beberapa saran dari penulis yang sekiranya dapat membantu untuk meningkatkan hasil dari penelitian ini, saran - saran tersebut adalah :
 
 \begin{enumerate}[nolistsep]
 
-  \item Memperbaiki \lipsum[2][1-3]
-
-  \item \lipsum[2][4-6]
-
-  \item \lipsum[2][7-10]
+  \item Dataset yang digunakan dalam penelitian ini masih dirasa kurang dan dapat diperbanyak lagi. Semakin banyak dataset yang digunakan semakin bagus pula tingkat akurasi modelnya.
+  \item Dataset yang digunakan dalam penelitian ini adalah dataset yang diambil langsung dari situs - situs di internet. Walaupun situs - situs tersebut adalah resmi, namun keabsahan datanya masih harus diverifikasi lagi, lebih spesifik lagi, data dengan label hoaks masih harus diverifikasi lagi.
+  \item Salah satu kelemahan BERT adalah jumlah token yang dapat diprosesnya dalam sekali waktu. Sudah terdapat penelitian lain hasil pengembangan dari BERT namun tidak memiliki limitasi jumlah token seperti BERT.
+  \item Membuat sistem yang sudah terintegrasi sehingga memudahkan masyarakat dalam mendeteksi berita palsu.
 
 \end{enumerate}
