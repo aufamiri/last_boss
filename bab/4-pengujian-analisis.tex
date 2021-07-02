@@ -377,11 +377,11 @@ BERT adalah model yang berdasarkan pada metode pendekatan \textit{transformer}, 
 
 \begin{enumerate}[nolistsep]
     \item Roberta
-    \item BERT
     \item GPT-2
+    \item BERT
 \end{enumerate}
 
-Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar performa dari setiap cara pendekatan model, ketiga metode yang diuji menggunakan model yang dibuat oleh orang yang sama, yaitu Cahya Wirawan dan di-\textit{pretrained} dengan sumber dan jumlah dataset yang sama. Tabel \ref{tab: transformer_config} merupakan konfigurasi yang digunakan pada waktu melakukan \textit{training} pada pengujian ini.
+Sebagai penyamaan dan memastikan bahwa yang diuji disini adalah benar - benar performa dari setiap cara pendekatan model, ketiga metode yang diuji menggunakan model yang dibuat oleh orang yang sama, yaitu Cahya Wirawan dan di-\textit{pretrained} dengan sumber dan jumlah dataset yang sama yaitu sebesar 522M. Tabel \ref{tab: transformer_config} merupakan konfigurasi yang digunakan pada waktu melakukan \textit{training} pada pengujian ini.
 
 \begin{table}[h]
     \centering
@@ -601,7 +601,7 @@ Pada pengujian ini kami ingin melihat pengaruh perubahan parameter \textit{dropo
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width= 0.9\linewidth]{gambar/loss_dropout_new.png}
-        \caption{Nilai \textit{loss} saat melakukan \textit{training} dengan merubah \textit{dropout}}
+        \caption{nilai \textit{loss} saat melakukan \textit{training} dengan merubah \textit{dropout}}
         \label{fig: loss_dropout}
     \end{center}
 \end{figure}
