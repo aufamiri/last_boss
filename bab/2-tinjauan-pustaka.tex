@@ -47,9 +47,19 @@ Gambar \ref{fig: deeplearning_layer} merupakan contoh bentuk \textit{layer} dala
 
 \section{\textit{Transformer}}
 
-\textit{Transformer} merupakan model \textit{deep learning} yang paling mutakhir saat ini. Tujuan dari \textit{transformer} sendiri sebagai pengembangan dari model rekuren (\textit {Recurrent Neural Network(RNN), Long Short-Term Memory(LSTM)}) ditambah dengan metode \textit{attention span} yang biasanya digunakan untuk melakukan suatu tugas dimana model harus "mengingat" masukan sebelumnya. Model rekuren seperti ini sangat berguna untuk suatu masukan yang bersifat sekuensial, seperti teks atau video sehingga sangat cocok untuk tugas yang memproses banyak teks seperti \textit{Natural Language Understanding (NLU)} atau mesin translasi otomatis \cite{lion_transformer}.
+\textit{Transformer} merupakan model \textit{deep learning} yang dibuat pada oleh Vaswani et. al, pada penelitian yang berjudul "Attention Is All You Need". Transformer sendiri adalah sebuah arsitektur model yang berguna untuk merubah teks menjadi suatu bentuk yang lain bergantung pada tujuan implementasi model tersebut \cite{attention_is_all_you_need}. Tujuan dari \textit{transformer} sendiri sebagai pengembangan dari model rekuren (\textit {Recurrent Neural Network(RNN), Long Short-Term Memory(LSTM)}) ditambah dengan metode \textit{attention span} yang biasanya digunakan untuk melakukan suatu tugas dimana model harus "mengingat" masukan sebelumnya. Model rekuren seperti ini sangat berguna untuk suatu masukan yang bersifat sekuensial, seperti teks atau video sehingga sangat cocok untuk tugas yang memproses banyak teks seperti \textit{Natural Language Understanding (NLU)} atau mesin translasi otomatis \cite{lion_transformer}.
 
 Namun, kelemahan yang cukup fatal adalah ketidakmampuan model rekuren ini untuk memproses data secara paralel sehingga semakin panjang data yang dimasukkan, maka semakin pula proses yang diperlukan untuk proses \textit{training} maupun saat model sudah berjalan \cite{attention_is_all_you_need}. Ide dasar dari metode \textit{transformer} ini adalah membuang bagian rekuren dari model rekuren yang sudah ada, dan hanya menggunakan bagian \textit{attention span}-nya saja atau dalam metode ini disebut sebagai \textit{self-attention}.
+
+\begin{figure}[h]
+    \centering
+    % Ubah file gambar berikut dengan file foto dari mahasiswa
+    \includegraphics[width=\textwidth]{gambar/transformer_architecture.png}
+    \caption{Model Arsitektur Transformer}
+    \label{fig: architecture_trasnformer}
+\end{figure}
+
+Gambar \ref{fig: architecture_transformer} merupakan bentuk arsitektur dari Transformer. Bagian \textit{encoder} berisi metode \textit{self-attention} yang berguna untuk merubah token - token representasi dari teks menjadi memiliki nilai bias untuk digunakan pada proses selanjutnya. Sedangkan bagian \textit{decoder} merupakan bagian yang berfungsi untuk melakukan keluaran berdasarkan nilai bias tersebut.
 
 \section{BERT}
 BERT merupakan suatu model yang cukup baru dan merupakan singkatan dari \textit{\textbf{B}idirectional \textbf{E}ncode \textbf{R}epresentations from \textbf{T}ransformers}, adalah sebuah model bahasa yang sudah dilakukan proses \textit{pretrained} dengan menggunakan pendekatan \textit{fine-tuning}. BERT merupakan hasil penggabungan antara \textit{bi-directionality} dan \textit{transformer encoder}. \cite{devlin2019bert}
@@ -64,7 +74,7 @@ BERT merupakan suatu model yang cukup baru dan merupakan singkatan dari \textit{
 
 Masukan dari BERT dapat berupa teks mentah dengan sedikit melakukan \textit{preprocessing} sebelumnya. Awalnya, BERT akan melakukan \textit{word embedding}, yaitu suatu metode untuk mendapatkan token dari kata yang dimasukkan berdasar pada kamus. Karena proses ini pulalah, terdapat beberapa versi BERT yang khusus untuk bahasa tertentu dan ada juga versi BERT untuk beberapa bahasa sekaligus. Setelah melakukan \textit{word embedding}, BERT akan memasukkan token \texttt{[CLS]}. Token tersebut digunakan sebagai representasi keseluruhan teks dan dapat digunakan sebagai basis dari proses klasifikasi. Selanjutnya, BERT akan membagi kalimat menggunakan token \texttt{[SEP]}. Dari token tersebut akan didapat \textit{segment embeddings} yang berfungsi untuk membedakan antara kalimat A dan kalimat B. \textit{Embedding} yang terakhir adalah berupa \textit{position embedding} yang digunakan untuk menunjukkan posisi kata dalam suatu kalimat. Gambar \ref{fig: bertToken} merupakan gambaran secara garis besar bagaimana BERT memahami suatu input.
 
-\begin{figure}[h!]
+\begin{figure}[h]
     \begin{center}
         \includegraphics[width= 0.9\linewidth]{gambar/bert.png}
         \caption{Token dalam BERT \cite{devlin2019bert}}
