@@ -37,7 +37,7 @@ Mirip seperti pembelajaran mesin, \textit{Deep Learning} juga merupakan salah sa
 
 Gambar \ref{fig: deeplearning_layer} merupakan contoh bentuk \textit{layer} dalam suatu model \textit{deep learning} yang menggunakan 4 \textit{layers} didalamnya. Setiap \textit{layer} dapat memiliki fungsi dan tanggung jawabnya masing - masing \cite{mit_ml_expl}, seperti misal apabila kita menggunakan \textit{deep learning} untuk mendeteksi angka plat nomor di kendaraan bermotor, bisa saja beberapa layer pertama berfungsi untuk mendeteksi letak plat nomor dalam suatu citra, kemudian beberapa layer selanjutnya berfungsi untuk mengambil bentuk dari setiap objek dalam plat nomor tersebut, beberapa layer terakhir berfungsi untuk mengenali bentuk - bentuk dari objek menjadi tulisan teks. Semakin banyak layer yang digunakan, maka semakin tinggi pula kemungkinan kita melakukan sesuatu yang lebih kompleks \cite{mit_ml_expl}.
 
-\begin{figure}[ht]
+\begin{figure}[h]
     \centering
     % Ubah file gambar berikut dengan file foto dari mahasiswa
     \includegraphics[width=\textwidth]{gambar/deeplearning_layer.png}
@@ -51,7 +51,7 @@ Gambar \ref{fig: deeplearning_layer} merupakan contoh bentuk \textit{layer} dala
 
 Namun, kelemahan yang cukup fatal adalah ketidakmampuan model rekuren ini untuk memproses data secara paralel sehingga semakin panjang data yang dimasukkan, maka semakin lama pula proses yang diperlukan untuk proses \textit{training} maupun saat model sudah berjalan \cite{attention_is_all_you_need}. Ide dasar dari metode \textit{transformer} ini adalah membuang bagian rekuren dari model rekuren yang sudah ada, dan hanya menggunakan bagian \textit{attention span}-nya saja atau dalam metode ini disebut sebagai \textit{self-attention}.
 
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     % Ubah file gambar berikut dengan file foto dari mahasiswa
     \includegraphics[width=\textwidth]{gambar/transformer_architecture.png}
@@ -60,6 +60,24 @@ Namun, kelemahan yang cukup fatal adalah ketidakmampuan model rekuren ini untuk 
 \end{figure}
 
 Gambar \ref{fig: architecture_transformer} merupakan bentuk arsitektur dari Transformer. Bagian \textit{encoder} berisi metode \textit{self-attention} yang berguna untuk merubah token - token representasi dari teks menjadi memiliki nilai bias untuk digunakan pada proses selanjutnya. Sedangkan bagian \textit{decoder} merupakan bagian yang berfungsi untuk melakukan keluaran berdasarkan nilai bias tersebut.
+
+\subsection{\textit{Self-Attention}}
+
+\textit{self-attention} adalah salah satu komponen penting dalam implementasi \textit{transformer}. \textit{self-attention} lah yang membuat token representasi dari teks, menjadi memiliki bias sehingga dapat dijadikan dasar untuk proses selanjutnya.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{gambar/self-attention.png}
+    \caption{Penghitungan \textit{Self-Attention}}
+    \label{fig: self_attention}
+\end{figure}
+
+Gambar \ref{fig: self_attention} merupakan cara penghitungan \textit{self-attention}. Sebuah teks mentah dimasukkan ke dalam \textit{Tokenizer} dan akan menghasilkan token atau vektor representasi dari teks yang dimasukkan. Pada saat awal, nilai dari \textit{Query} (Q) dan nilai \textit{Value} (V) memiliki nilai yang sama, namun bisa jadi berbeda pada \textit{layer - layer} berikutnya.
+
+Y yang merupakan simbol dari\textit{weighted value} didapat dengan menghitung jumlah \textit{cross-product} dari \textit{value} setiap kata dengan \textit{query} kata yang dicari \textit{weighted value}-nya. Terakhir akan dilakukan normalisasi pada hasil penjumlahan dan proses dari \textit{self-attention} selesai.
+
+Dalam implementasi \textit{transformer} pada umumnya terdapat 6 \textit{node self-attention} pada bagian \textit{encoder}, dan 6 lagi pada bagian \textit{decoder}.
+
 
 \section{BERT}
 BERT merupakan suatu model yang cukup baru dan merupakan singkatan dari \textit{\textbf{B}idirectional \textbf{E}ncode \textbf{R}epresentations from \textbf{T}ransformers}, adalah sebuah model bahasa yang sudah dilakukan proses \textit{pretrained} dengan menggunakan pendekatan \textit{fine-tuning}. BERT merupakan hasil penggabungan antara \textit{bi-directionality} dan \textit{transformer encoder}. \cite{devlin2019bert}
