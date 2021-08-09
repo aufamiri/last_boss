@@ -11,7 +11,7 @@ Berita palsu atau biasa dikenal dengan berita hoaks adalah sebuah informasi yang
 
 Ada banyak sekali efek dari berita palsu ini, mulai dari hilangnya reputasi sampai nyawa yang terancam. Salah satu contoh kasus yang cukup parah adalah kerusuhan yang terjadi di Papua, dimana kerusuhan tersebut disebabkan karena adanya hoaks soal ucapan rasialis dari seorang guru SMP kepada muridnya \cite{efek_hoax}.
 
-Terdapat beberapa metode yang dapat dilakukan untuk mendeteksi berita palsu, seperti misalnya melakukan konfirmasi informasi berita melalui sumber lain, melihat siapa penulis. Namun, untuk saat ini, komputer masih kesulitan untuk melakukan seluruh hal tersebut diatas, sehingga dilakukan alternatif pendekatan lain seperti melakukan representasi data (dengan metode \textit{bag-of-words}), menganalisis gaya penulisan suatu berita, atau melihat hubungan antara peengalaman penulis dengan apa yang ditulis \cite{fake_news_detection_method}.
+Terdapat beberapa metode yang dapat dilakukan untuk mendeteksi berita palsu, seperti misalnya melakukan konfirmasi informasi berita melalui sumber lain, melihat siapa penulis. Namun, untuk saat ini, komputer masih kesulitan untuk melakukan seluruh hal tersebut diatas, sehingga dilakukan alternatif pendekatan lain seperti melakukan representasi data (dengan metode \textit{bag-of-words}), menganalisis gaya penulisan suatu berita, atau melihat hubungan antara pengalaman penulis dengan apa yang ditulis \cite{fake_news_detection_method}.
 
 \section{\textit{Machine Learning}}
 
@@ -51,7 +51,7 @@ Gambar \ref{fig: deeplearning_layer} merupakan contoh bentuk \textit{layer} dala
 
 \textit{Transformer} merupakan model \textit{deep learning} yang dibuat pada oleh Vaswani et. al, pada penelitian yang berjudul "Attention Is All You Need". \textit{Transformer} sendiri adalah sebuah arsitektur model yang berguna untuk merubah teks menjadi suatu bentuk yang lain bergantung pada tujuan implementasi model tersebut \cite{attention_is_all_you_need}. Tujuan dari \textit{transformer} sendiri sebagai pengembangan dari model rekuren (\textit {Recurrent Neural Network(RNN), Long Short-Term Memory(LSTM)}) ditambah dengan metode \textit{attention span} yang biasanya digunakan untuk melakukan suatu tugas dimana model harus "mengingat" masukan sebelumnya. Model rekuren seperti ini sangat berguna untuk suatu masukan yang bersifat sekuensial, seperti teks atau video sehingga sangat cocok untuk tugas yang memproses banyak teks seperti \textit{Natural Language Understanding (NLU)} atau mesin translasi otomatis \cite{lion_transformer}.
 
-Namun, kelemahan yang cukup fatal adalah ketidakmampuan model rekuren ini untuk memproses data secara paralel sehingga semakin panjang data yang dimasukkan, maka semakin lama pula proses yang diperlukan untuk proses \textit{training} maupun saat model sudah berjalan \cite{attention_is_all_you_need}. Ide dasar dari metode \textit{transformer} ini adalah membuang bagian rekuren dari model rekuren yang sudah ada, dan hanya menggunakan bagian \textit{attention span}-nya saja atau dalam metode ini disebut sebagai \textit{self-attention}.
+Namun, kelemahan terbesar model rekuren ini adalah ketidakmampuannya untuk memproses data secara paralel sehingga semakin panjang data yang dimasukkan, maka semakin lama pula proses yang diperlukan untuk proses \textit{training} maupun saat model sudah berjalan \cite{attention_is_all_you_need}. Ide dasar dari metode \textit{transformer} ini adalah membuang bagian rekuren dari model rekuren yang sudah ada, dan hanya menggunakan bagian \textit{attention span}-nya saja atau dalam metode ini disebut sebagai \textit{self-attention}.
 
 \begin{figure}[h]
     \centering
@@ -74,25 +74,17 @@ Gambar \ref{fig: architecture_transformer} merupakan bentuk arsitektur dari Tran
     \label{fig: self_attention}
 \end{figure}
 
-Gambar \ref{fig: self_attention} merupakan cara penghitungan \textit{self-attention}. Sebuah teks mentah dimasukkan ke dalam \textit{Tokenizer} dan akan menghasilkan token atau vektor representasi dari teks yang dimasukkan. Pada saat awal, nilai dari \textit{Query} (Q) dan nilai \textit{Value} (V) memiliki nilai yang sama, namun bisa jadi berbeda pada \textit{layer - layer} berikutnya.
+Gambar \ref{fig: self_attention} merupakan cara penghitungan \textit{self-attention}. Sebuah teks mentah dimasukkan ke dalam \textit{Tokenizer} yang akan menghasilkan token atau vektor representasi dari teks masukan dan disimbolkan sebagai \textit{Value} (V). Pada saat awal, nilai dari \textit{Query} (Q) dan nilai \textit{Value} (V) memiliki nilai yang sama, namun bisa jadi berbeda pada \textit{layer - layer} berikutnya.
 
-Y yang merupakan simbol dari\textit{weighted value} didapat dengan menghitung jumlah \textit{cross-product} dari \textit{value} setiap kata dengan \textit{query} kata yang dicari \textit{weighted value}-nya. Terakhir akan dilakukan normalisasi pada hasil penjumlahan dan proses dari \textit{self-attention} selesai.
+Y yang merupakan simbol dari \textit{weighted value} didapat dengan menghitung jumlah \textit{cross-product} dari \textit{value} setiap kata dengan \textit{query} kata yang dicari \textit{weighted value}-nya. Terakhir akan dilakukan normalisasi pada hasil penjumlahan dan proses dari \textit{self-attention} selesai.
 
-Dalam implementasi \textit{transformer} pada umumnya terdapat 6 \textit{node self-attention} pada bagian \textit{encoder}, dan 6 lagi pada bagian \textit{decoder}.
+Dalam implementasi \textit{transformer}, pada umumnya terdapat 6 \textit{node self-attention} pada bagian \textit{encoder}, dan 6 lagi pada bagian \textit{decoder}.
 
 
 \section{BERT}
 BERT merupakan suatu model yang cukup baru dan merupakan singkatan dari \textit{\textbf{B}idirectional \textbf{E}ncode \textbf{R}epresentations from \textbf{T}ransformers}, adalah sebuah model bahasa yang sudah dilakukan proses \textit{pretrained} dengan menggunakan pendekatan \textit{fine-tuning}. BERT merupakan hasil penggabungan antara \textit{bi-directionality} dan \textit{transformer encoder}. \cite{devlin2019bert}
 
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width= .8\linewidth]{gambar/bert_archi_base.png}
-        \caption{pendekatan dua arah BERT}
-        \label{fig: bidirectionalBert}
-    \end{center}
-\end{figure}
-
-Masukan dari BERT dapat berupa teks mentah dengan sedikit melakukan \textit{preprocessing} sebelumnya. Awalnya, BERT akan melakukan \textit{word embedding}, yaitu suatu metode untuk mendapatkan token dari kata yang dimasukkan berdasar pada kamus. Karena proses ini pulalah, terdapat beberapa versi BERT yang khusus untuk bahasa tertentu dan ada juga versi BERT untuk beberapa bahasa sekaligus. Setelah melakukan \textit{word embedding}, BERT akan memasukkan token \texttt{[CLS]}. Token tersebut digunakan sebagai representasi keseluruhan teks dan dapat digunakan sebagai basis dari proses klasifikasi. Selanjutnya, BERT akan membagi kalimat menggunakan token \texttt{[SEP]}. Dari token tersebut akan didapat \textit{segment embeddings} yang berfungsi untuk membedakan antara kalimat A dan kalimat B. \textit{Embedding} yang terakhir adalah berupa \textit{position embedding} yang digunakan untuk menunjukkan posisi kata dalam suatu kalimat. Gambar \ref{fig: bertToken} merupakan gambaran secara garis besar bagaimana BERT memahami suatu input.
+Salah satu hal baru yang ditawarkan oleh BERT dibanding penelitian oleh Vaswani et al. adalah cara pelatihannya. BERT dilatih dengan dua cara, yang pertama adalah dengan cara diberikan dataset berisi kalimat dimana dalam dataset tersebut, terdapat beberapa kata - kata yang disensor. Model diminta untuk memprediksi kata - kata apa yang disensor tersebut. Metode pelatihan selanjutnya adalah memprediksi kalimat selanjutnya dari suatu kalimat yang diberikan. Hasil dari dua metode pelatihan ini adalah suatu model yang dapat digunakan untuk memprediksi suatu hubungan antar kata - kata atau kalimat, dan dapat mengetahui struktur umum dari suatu teks \cite{jawahar-etal-2019-bert}. Karena BERT dapat mengenali suatu struktur dan hubungan antar kata - kata, maka BERT hanya dapat mendukung bahasa yang spesifik sesuai dengan data yang dimasukkan saat proses pelatihan di awal.
 
 \begin{figure}[h]
     \begin{center}
@@ -102,11 +94,25 @@ Masukan dari BERT dapat berupa teks mentah dengan sedikit melakukan \textit{prep
     \end{center}
 \end{figure}
 
-Keluaran dari BERT adalah berupa token - token yang merepresentasikan kalimat tersebut. Nantinya, token - token tersebut dapat digunakan sebagai masukan dari algoritma lain seperti misalnya CNN, maupun menggunakan isi token \texttt{[CLS]} sebagai masukan algoritma klasifikasi seperti \textit{Logistic Regression}.
+Pada awal proses, teks mentah akan dimasukkan ke dalam proses \textit{tokenizer}. Dimana proses tersebut akan merubah teks mentah menjadi beberapa token representasi seperti pada gambar \ref{fig: bertToken}. Terdapat \textit{Token Embeddings} yang berisi nilai vektor yang berasal dari kata - kata yang tersimpan dalam \textit{tokenizer}. Selain itu, juga terdapat \textit{Segment Embeddings} yang menunjukkan apakah suatu kata - kata masuk ke dalam kalimat A atau B, token ini hanya berguna saat BERT ingin digunakan sebagai model untuk membandingkan antara 2 kalimat. Terakhir, terdapat \textit{Position Embeddings} yang digunakan untuk menunjukkan posisi kata dalam suatu kalimat. Ketiga \textit{embeddings} ini akan dijumlahkan didalam BERT untuk mengatur nilai \textit{Value}(V) yang akan digunakan untuk proses selanjutnya.
 
-Keuntungan dari penggunaan BERT adalah apabila dibandingkan dengan \textit{word2vec} yang juga sama - sama merubah kata - kata menjadi vektor atau token adalah, BERT tidak hanya merubah kata - kata tersebut menjadi token saja, namun juga melakukan relasi dan konteks \textit{learning} sehingga token dapat lebih menunjukkan konteks dari kalimat. Sebagai contoh, dalam kalimat "hadiah untuk ibuku sudah dikemas" dan kalimat "acara tersebut dikemas dengan rapi". Kata - kata "dikemas" disini memiliki 2 arti yang berbeda, yang pertama adalah berarti dibungkus, sedangkan yang kedua adalah ditampilkan. Apabila kita menggunakan \textit{word2vec} biasa, kata - kata "dikemas" akan memiliki token yang sama, sedangkan apabila menggunakan BERT, kata tersebut akan memiliki token yang berbeda. \cite{coenen2019visualizing}
+Terdapat beberapa token khusus yang digunakan BERT sebagai penanda, yaitu, [SEP] yang merepresentasikan akhir suatu kalimat, dan [CLS] yang digunakan untuk menyimpan agregat dari seluruh token representasi dalam 1 \textit{node}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width= .8\linewidth]{gambar/bert_archi_base.png}
+        \caption{pendekatan dua arah BERT}
+        \label{fig: bidirectionalBert}
+    \end{center}
+\end{figure}
+
+Gambar \ref{fig: bidirectionalBert} menunjukkan arsitektur implementasi dari BERT. Sesuai dengan namanya, di dalam arsitektur BERT terdapat beberapa \textit{node transformer}. Namun, hanya bagian \textit{encoder} dari \textit{transformer} saja yang digunakan, hal ini untuk memberikan bias pada token - token representasi yang dimasukkan. Keluaran dari BERT hanyalah berupa token - token yang merepresentasikan kalimat tersebut dan harus digabungkan dengan algoritma atau model lain untuk memberikan keluaran yang berarti. Sehingga, token - token tersebut dapat digunakan sebagai masukan dari algoritma lain seperti misalnya CNN, atau menggunakan isi token \texttt{[CLS]} sebagai masukan algoritma klasifikasi seperti \textit{Linear Regression}.
+
+Keuntungan dari penggunaan BERT adalah apabila dibandingkan dengan \textit{word2vec} yang juga memiliki fungsi yang kurang lebih sama adalah, BERT tidak hanya merubah kata - kata tersebut menjadi token saja, namun juga melihat hubungan antar kata - kata dan memberikan bias yang sesuai sehingga dapat lebih merepresentasikan konteks dari kalimat. Sebagai contoh, dalam kalimat "hadiah untuk ibuku sudah dikemas" dan kalimat "acara tersebut dikemas dengan rapi". Kata - kata "dikemas" disini memiliki 2 arti yang berbeda, yang pertama adalah berarti dibungkus, sedangkan yang kedua adalah ditampilkan. Apabila metode yang digunakan adalah \textit{word2vec}, kata - kata "dikemas" akan memiliki token yang sama, sedangkan apabila menggunakan BERT, kata tersebut akan memiliki token yang berbeda. \cite{coenen2019visualizing}
 
 Di Indonesia sendiri sudah terdapat beberapa model BERT yang khusus untuk bahasa Indonesia seperti model yang dibuat oleh Cahya dengan menggunakan gabungan dari 522 MB wikipedia Indonesia dan 1GB surat kabar Indonesia \cite{cahya_bert}, dan IndoBERT dengan 12 \textit{layer} dan dilatih menggunakan 31,923 kata dalam bahasa Indonesia \cite{koto2020indolem}. Hal ini kurang lebih sama dengan ukuran BERT-\textit{Base} yang juga memiliki 12 \textit{layer} dan 30,000 kata dalam bahasa Inggris \cite{devlin2019bert}.
+
+Dalam penelitian ini, salah satu kemampuan BERT yang diinginkan adalah melakukan representasi kata - kata yang lebih akurat karena merepresentasikan konteks dan dapat melakukan analisis pada gaya penulisan teks berita secara umum.
 
 \section{Metode Analisa Performa}
 Terdapat beberapa metode yang bisa dilakukan untuk mengetahui apakah suatu model memiliki akurasi yang cukup. Penelitian ini menggunakan beberapa formula yang sudah ditentukan seperti \textit{recall, precision, f1-score} dan \textit{confusion matrix}.
