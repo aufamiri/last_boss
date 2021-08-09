@@ -11,6 +11,8 @@ Berita palsu atau biasa dikenal dengan berita hoaks adalah sebuah informasi yang
 
 Ada banyak sekali efek dari berita palsu ini, mulai dari hilangnya reputasi sampai nyawa yang terancam. Salah satu contoh kasus yang cukup parah adalah kerusuhan yang terjadi di Papua, dimana kerusuhan tersebut disebabkan karena adanya hoaks soal ucapan rasialis dari seorang guru SMP kepada muridnya \cite{efek_hoax}.
 
+Terdapat beberapa metode yang dapat dilakukan untuk mendeteksi berita palsu, seperti misalnya melakukan konfirmasi informasi berita melalui sumber lain, melihat siapa penulis. Namun, untuk saat ini, komputer masih kesulitan untuk melakukan seluruh hal tersebut diatas, sehingga dilakukan alternatif pendekatan lain seperti melakukan representasi data (dengan metode \textit{bag-of-words}), menganalisis gaya penulisan suatu berita, atau melihat hubungan antara peengalaman penulis dengan apa yang ditulis \cite{fake_news_detection_method}.
+
 \section{\textit{Machine Learning}}
 
 \textit{Machine Learning} atau Pembelajaran Mesin adalah salah satu cabang dalam kecerdasan buatan dan ilmu komputer yang menggunakan data dan algoritma untuk meniru manusia dalam mempelajari sesuatu \cite{ibm_ml_expl}. Salah satu hal yang membuat pembelajaran mesin sangat diminati adalah kemampuannya untuk menyelesaikan suatu tugas dengan sedikit intervensi dari manusia.
@@ -63,7 +65,7 @@ Gambar \ref{fig: architecture_transformer} merupakan bentuk arsitektur dari Tran
 
 \subsection{\textit{Self-Attention}}
 
-\textit{self-attention} adalah salah satu komponen penting dalam implementasi \textit{transformer}. \textit{self-attention} lah yang membuat token representasi dari teks, menjadi memiliki bias sehingga dapat dijadikan dasar untuk proses selanjutnya.
+\textit{Self-attention} adalah salah satu komponen penting dalam implementasi \textit{transformer}. Setiap \textit{node} dari bagian \textit{encoder} maupun \textit{decoder} menggunakan \textit{self-attention} sebagai pemrosesan. \textit{self-attention}-lah yang membuat token representasi dari teks, menjadi memiliki bias sehingga dapat dijadikan dasar untuk proses selanjutnya.
 
 \begin{figure}[h]
     \centering
@@ -127,7 +129,7 @@ Seringnya, kita tidak hanya melihat tingkat akurasi suatu model hanya dengan bes
     \label{form:precision}
 \end{equation}
 
-Baik \textit{recall} maupun \textit{precision} merupakan nilai yang cukup penting terutama pada data yang tidak seimbang. Terdapat 3 kondisi yang umum terjadi pada saat membandingkan antara \textit{precision} dengan \textit{recall}.
+Baik \textit{recall} maupun \textit{precision} merupakan nilai yang cukup penting terutama pada data yang tidak seimbang. Terdapat 3 kelfndisi yang umum terjadi pada saat membandingkan antara \textit{precision} dengan \textit{recall}.
 
 \begin{itemize}
     \item \textit{Recall} tinggi, \textit{Precision} rendah
